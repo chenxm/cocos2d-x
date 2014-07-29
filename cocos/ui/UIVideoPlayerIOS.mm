@@ -158,7 +158,7 @@ using namespace cocos2d::experimental::ui;
     }
     
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
-    auto eaglview = (CCEAGLView *) view->getEAGLView();
+    auto eaglview = (CCEAGLView *) ((cocos2d::GLView*)view)->getEAGLView();
     [eaglview addSubview:self.moviePlayer.view];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayer];
@@ -323,7 +323,7 @@ void VideoPlayer::draw(Renderer* renderer, const Mat4 &transform, uint32_t flags
         auto directorInstance = Director::getInstance();
         auto glView = directorInstance->getOpenGLView();
         auto frameSize = glView->getFrameSize();
-        auto scaleFactor = [static_cast<CCEAGLView *>(glView->getEAGLView()) contentScaleFactor];
+        auto scaleFactor = [static_cast<CCEAGLView *>(((GLView*)glView)->getEAGLView()) contentScaleFactor];
         
         auto winSize = directorInstance->getWinSize();
         

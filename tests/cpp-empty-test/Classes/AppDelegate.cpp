@@ -5,6 +5,7 @@
 
 #include "HelloWorldScene.h"
 #include "AppMacros.h"
+#include "CCGLView.h"
 
 USING_NS_CC;
 using namespace std;
@@ -22,7 +23,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLView::create("Cpp Empty Test");
+        GLView* originglview = GLView::create("Cpp Empty Test");
+        originglview->retain();
+        glview = originglview;
         director->setOpenGLView(glview);
     }
 

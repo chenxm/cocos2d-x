@@ -28,6 +28,7 @@
 
 #include "cocos2d.h"
 #include "BaseTest.h"
+#include "CCApplication.h"
 /**
 @brief    The cocos2d Application.
 

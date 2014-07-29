@@ -200,10 +200,10 @@ THE SOFTWARE.
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
-    #include "platform/mac/CCApplication.h"
-    #include "platform/desktop/CCGLView.h"
-    #include "platform/mac/CCGL.h"
-    #include "platform/mac/CCStdC.h"
+//    #include "platform/mac/CCApplication.h"
+    #include "platform/CCGLViewProtocol.h"
+//    #include "platform/mac/CCGL.h"
+//    #include "platform/mac/CCStdC.h"
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_MAC
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)

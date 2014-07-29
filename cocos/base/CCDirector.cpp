@@ -61,7 +61,7 @@ THE SOFTWARE.
 #include "base/CCNS.h"
 #include "math/CCMath.h"
 #include "CCApplication.h"
-#include "CCGLView.h"
+#include "CCGLViewProtocol.h"
 
 /**
  Position of the FPS
@@ -358,9 +358,10 @@ float Director::getDeltaTime() const
 {
     return _deltaTime;
 }
-void Director::setOpenGLView(GLView *openGLView)
+GLViewProtocol* Director::setOpenGLView(GLViewProtocol *openGLView)
 {
     CCASSERT(openGLView, "opengl view should not be null");
+    GLViewProtocol* oldGLView = nullptr;
 
     if (_openGLView != openGLView)
     {
@@ -369,10 +370,11 @@ void Director::setOpenGLView(GLView *openGLView)
         conf->gatherGPUInfo();
         CCLOG("%s\n",conf->getInfo().c_str());
 
-        if(_openGLView)
-            _openGLView->release();
+//        if(_openGLView)
+//            _openGLView->release();
+        oldGLView = _openGLView;
         _openGLView = openGLView;
-        _openGLView->retain();
+//        _openGLView->retain();
 
         // set size
         _winSizeInPoints = _openGLView->getDesignResolutionSize();
@@ -1251,7 +1253,7 @@ void DisplayLinkDirector::startAnimation()
 
     _invalid = false;
 
-    Application::getInstance()->setAnimationInterval(_animationInterval);
+//    Application::getInstance()->setAnimationInterval(_animationInterval);
     
     // fix issue #3509, skip one fps to avoid incorrect time calculation.
     setNextDeltaTimeZero(true);

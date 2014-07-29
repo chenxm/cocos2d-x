@@ -24,6 +24,7 @@ THE SOFTWARE.
 ****************************************************************************/
 //#import <UIKit/UIKit.h>
 #include "CCThread.h"
+#include "Foundation/Foundation.h"
 
 NS_CC_BEGIN
 

@@ -50,7 +50,7 @@ NS_CC_BEGIN
 /* Forward declarations. */
 class LabelAtlas;
 class Scene;
-class GLView;
+class GLViewProtocol;
 class DirectorDelegate;
 class Node;
 class Scheduler;
@@ -171,8 +171,8 @@ public:
     * @js NA
     * @lua NA
     */
-    inline GLView* getOpenGLView() { return _openGLView; }
-    void setOpenGLView(GLView *openGLView);
+    inline GLViewProtocol* getOpenGLView() { return _openGLView; }
+    GLViewProtocol* setOpenGLView(GLViewProtocol *openGLView);
 
     TextureCache* getTextureCache() const;
 
@@ -443,7 +443,7 @@ protected:
 	float _deltaTime;
     
     /* The GLView, where everything is rendered */
-    GLView *_openGLView;
+    GLViewProtocol *_openGLView;
 
     //texture cache belongs to this director
     TextureCache *_textureCache;

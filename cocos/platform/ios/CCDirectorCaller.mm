@@ -29,7 +29,8 @@
 #import <Foundation/Foundation.h>
 #import <OpenGLES/EAGL.h>
 #import "CCDirectorCaller.h"
-#import "CCDirector.h"
+#import "cocos2d.h"
+//#import "CCDirector.h"
 #import "CCGLView.h"
 #import "CCEAGLView.h"
 
@@ -105,7 +106,7 @@ static id s_sharedDirectorCaller;
 -(void) doCaller: (id) sender
 {
     cocos2d::Director* director = cocos2d::Director::getInstance();
-    [EAGLContext setCurrentContext: [(CCEAGLView*)director->getOpenGLView()->getEAGLView() context]];
+    [EAGLContext setCurrentContext: [(CCEAGLView*)((cocos2d::GLView*)director->getOpenGLView())->getEAGLView() context]];
     director->mainLoop();
 }
 

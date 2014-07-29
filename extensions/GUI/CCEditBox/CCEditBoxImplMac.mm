@@ -31,7 +31,9 @@
 #include "CCEditBox.h"
 #define GLFW_EXPOSE_NATIVE_NSGL
 #define GLFW_EXPOSE_NATIVE_COCOA
+#include "glfw3.h"
 #include "glfw3native.h"
+#include "CCGLView.h"
 
 
 #define getEditBoxImplMac() ((cocos2d::extension::EditBoxImplMac*)editBox_)
@@ -49,7 +51,7 @@
 - (id) getNSWindow
 {
     auto glview = cocos2d::Director::getInstance()->getOpenGLView();
-    return glfwGetCocoaWindow(glview->getWindow());
+    return glfwGetCocoaWindow(((cocos2d::GLView*)glview)->getWindow());
 }
 
 - (void)dealloc

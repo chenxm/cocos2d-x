@@ -32,7 +32,7 @@
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
-#import "CCPlatformMacros.h"
+//#import "CCPlatformMacros.h"
 #import "OpenGL_Internal.h"
 
 #if !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0

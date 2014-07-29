@@ -182,6 +182,13 @@ public:
 
     /** returns the current Resolution policy */
     ResolutionPolicy getResolutionPolicy() const { return _resolutionPolicy; }
+    
+    virtual bool isRetinaDisplay() const {return false;}
+    virtual int getRetinaFactor() const {return 1;}
+    virtual float getFrameZoomFactor() {return 1.0f;}
+    virtual float getContentScaleFactor() const { return 1.0f;}
+    
+    
 
 protected:
     void updateDesignResolutionSize();

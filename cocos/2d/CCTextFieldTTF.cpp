@@ -26,7 +26,7 @@ THE SOFTWARE.
 #include "CCTextFieldTTF.h"
 
 #include "base/CCDirector.h"
-#include "CCGLView.h"
+#include "CCGLViewProtocol.h"
 
 NS_CC_BEGIN
 
@@ -140,7 +140,7 @@ bool TextFieldTTF::attachWithIME()
     if (ret)
     {
         // open keyboard
-        GLView * pGlView = Director::getInstance()->getOpenGLView();
+        GLViewProtocol * pGlView = Director::getInstance()->getOpenGLView();
         if (pGlView)
         {
             pGlView->setIMEKeyboardState(true);
@@ -155,7 +155,7 @@ bool TextFieldTTF::detachWithIME()
     if (ret)
     {
         // close keyboard
-        GLView * glView = Director::getInstance()->getOpenGLView();
+        GLViewProtocol * glView = Director::getInstance()->getOpenGLView();
         if (glView)
         {
             glView->setIMEKeyboardState(false);
