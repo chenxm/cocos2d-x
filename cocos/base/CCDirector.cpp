@@ -60,7 +60,7 @@ THE SOFTWARE.
 #include "base/CCConfiguration.h"
 #include "base/CCNS.h"
 #include "math/CCMath.h"
-#include "CCApplication.h"
+//#include "CCApplication.h"
 #include "CCGLViewProtocol.h"
 
 /**
