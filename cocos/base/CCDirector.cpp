@@ -395,6 +395,7 @@ GLViewProtocol* Director::setOpenGLView(GLViewProtocol *openGLView)
             _eventDispatcher->setEnabled(true);
         }
     }
+    return oldGLView;
 }
 
 TextureCache* Director::getTextureCache() const
