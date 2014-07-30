@@ -11,6 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = A03F2E8F178141C1006731B9 /* Build configuration list for PBXAggregateTarget "build all libs Mac" */;
 			buildPhases = (
+				F4FDD8351987A84F00816EB1 /* ShellScript */,
 			);
 			dependencies = (
 				A03F31FF178147CB006731B9 /* PBXTargetDependency */,
@@ -6073,6 +6074,7 @@
 				1551A33B158F2AB200E66CFE /* Sources */,
 				1551A33C158F2AB200E66CFE /* Frameworks */,
 				1551A33D158F2AB200E66CFE /* Headers */,
+				F448AD0519887BA300D9950D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -6454,6 +6456,35 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F448AD0519887BA300D9950D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp \"${TARGET_BUILD_DIR}/${TARGET_NAME}.a\" \"${PROJECT_DIR}/../qt/lib/mac/libcocos2d.a\"";
+		};
+		F4FDD8351987A84F00816EB1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo ${DERIVED_FILE_DIR} asdfasd";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1551A33B158F2AB200E66CFE /* Sources */ = {
