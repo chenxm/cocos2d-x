@@ -3,8 +3,6 @@
 //#include <SimpleAudioEngine.h>
 
 USING_NS_CC;
-//USING_NS_CC_EXT;
-using namespace CocosDenshion;
 
 static HelloWorld *g_pHelloWorld = NULL;
 Scene *HelloWorld::scene()
