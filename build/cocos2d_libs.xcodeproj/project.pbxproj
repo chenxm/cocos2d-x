@@ -6469,7 +6469,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp \"${TARGET_BUILD_DIR}/${TARGET_NAME}.a\" \"${PROJECT_DIR}/../qt/lib/mac/libcocos2d.a\"";
+			shellScript = "mkdir -p \"${PROJECT_DIR}/../qt/lib/mac\"\ncp \"${TARGET_BUILD_DIR}/${TARGET_NAME}.a\" \"${PROJECT_DIR}/../qt/lib/mac/libcocos2d.a\"";
 		};
 		F4FDD8351987A84F00816EB1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
