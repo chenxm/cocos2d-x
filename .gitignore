@@ -1,3 +1,4 @@
+/qt/**/*.pro.user
 /qt/*.app
 /qt/build-*
 /qt/lib/
