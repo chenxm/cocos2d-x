@@ -1,4 +1,4 @@
-#include "CCGLView.h"
+#include "CCGLViewImpl.h"
 #include "CCApplication.h"
 
 
@@ -75,9 +75,9 @@ static bool glew_dynamic_binding()
 }
 
 //////////////////////////////////////////////////////////////////////////
-// impliment GLView
+// impliment GLViewImpl
 //////////////////////////////////////////////////////////////////////////
-//static GLView* s_pMainWindow = NULL;
+//static GLViewImpl* s_pMainWindow = NULL;
 
 //static void mouseMove(QMouseEvent *event)
 //{
@@ -115,7 +115,7 @@ static bool glew_dynamic_binding()
 //    return;
 //}
 
-GLView::GLView()
+GLViewImpl::GLViewImpl()
     : m_bCaptured(false)
     , m_fFrameZoomFactor(1.0f)
 //    , m_bSupportTouch(false)
@@ -129,13 +129,13 @@ GLView::GLView()
     m_pSet = new std::vector<Touch*>();
 }
 
-GLView::~GLView()
+GLViewImpl::~GLViewImpl()
 {
     CC_SAFE_DELETE(m_pTouch);
     CC_SAFE_DELETE(m_pSet);
 }
 
-bool GLView::initGL()
+bool GLViewImpl::initGL()
 {
     if(m_bIsInit)
     {
@@ -196,16 +196,16 @@ bool GLView::initGL()
     return true;
 }
 
-void GLView::destroyGL()
+void GLViewImpl::destroyGL()
 {
 }
 
-bool GLView::isOpenGLReady()
+bool GLViewImpl::isOpenGLReady()
 {
     return m_bIsInit;
 }
 
-void GLView::end()
+void GLViewImpl::end()
 {
     CC_SAFE_DELETE(m_pSet);
     CC_SAFE_DELETE(m_pTouch);
@@ -216,7 +216,7 @@ void GLView::end()
     delete this;
 }
 
-void GLView::swapBuffers()
+void GLViewImpl::swapBuffers()
 {
     if (m_bIsInit)
     {
@@ -227,20 +227,20 @@ void GLView::swapBuffers()
 }
 
 
-void GLView::setIMEKeyboardState(bool /*bOpen*/)
+void GLViewImpl::setIMEKeyboardState(bool /*bOpen*/)
 {
 
 }
 
-void GLView::setViewName(const std::string &pszViewName)
+void GLViewImpl::setViewName(const std::string &pszViewName)
 {
-    GLViewProtocol::setViewName(pszViewName);
+    GLView::setViewName(pszViewName);
 //    if (m_glParentWidget) {
 //        m_glParentWidget->setWindowTitle(getViewName().c_str());
 //    }
 }
 
-//void GLView::resize(int width, int height)
+//void GLViewImpl::resize(int width, int height)
 //{
 //    do {
 //        CC_BREAK_IF(!m_window);
@@ -258,7 +258,7 @@ void GLView::setViewName(const std::string &pszViewName)
 //    return;
 //}
 
-void GLView::setFrameZoomFactor(float fZoomFactor)
+void GLViewImpl::setFrameZoomFactor(float fZoomFactor)
 {
 //    CCTRACE();
     m_fFrameZoomFactor = fZoomFactor;
@@ -267,21 +267,21 @@ void GLView::setFrameZoomFactor(float fZoomFactor)
     Director::getInstance()->setProjection(Director::getInstance()->getProjection());
 }
 
-float GLView::getFrameZoomFactor()
+float GLViewImpl::getFrameZoomFactor()
 {
     return m_fFrameZoomFactor;
 }
 
-void GLView::setFrameSize(float width, float height)
+void GLViewImpl::setFrameSize(float width, float height)
 {
 //    CCTRACE();
-    GLViewProtocol::setFrameSize(width, height);
+    GLView::setFrameSize(width, height);
 
 //    resize(width, height); // adjust window size for menubar
 //    centerWindow();
 }
 
-void GLView::centerWindow()
+void GLViewImpl::centerWindow()
 {
 //    CCTRACE();
 //    if (m_glParentWidget && !m_glParentWidget->parent()) {
@@ -292,32 +292,32 @@ void GLView::centerWindow()
 //    }
 }
 
-//void GLView::moveWindow(int left, int top)
+//void GLViewImpl::moveWindow(int left, int top)
 //{
 //    if (m_glParentWidget && !m_glParentWidget->parent()) {
 //        m_glParentWidget->move(left, top);
 //    }
 //}
 
-void GLView::setViewPortInPoints(float x , float y , float w , float h)
+void GLViewImpl::setViewPortInPoints(float x , float y , float w , float h)
 {
 //    CCTRACE();
-//    GLViewProtocol::setViewPortInPoints(x, y, w, h);
+//    GLView::setViewPortInPoints(x, y, w, h);
     glViewport((GLint)(x * _scaleX + _viewPortRect.origin.x),
                (GLint)(y * _scaleY + _viewPortRect.origin.y),
                (GLsizei)(w * _scaleX),
                (GLsizei)(h * _scaleY));
 }
 
-void GLView::setScissorInPoints(float x , float y , float w , float h)
+void GLViewImpl::setScissorInPoints(float x , float y , float w , float h)
 {
 //    CCTRACE();
-    GLViewProtocol::setScissorInPoints(x, y, w, h);
+    GLView::setScissorInPoints(x, y, w, h);
 }
 
-GLView* GLView::create(const std::string &viewName)
+GLViewImpl* GLViewImpl::create(const std::string &viewName)
 {
-    GLView* glView = new GLView;
+    GLViewImpl* glView = new GLViewImpl;
     if(!glView->initGL()) {
         delete glView;
         glView = nullptr;
@@ -325,18 +325,18 @@ GLView* GLView::create(const std::string &viewName)
     return glView;
 }
 
-//GLView* GLView::create(QWidget *param)
+//GLViewImpl* GLViewImpl::create(QWidget *param)
 //{
-//    return GLView::createWithWidget(param);
+//    return GLViewImpl::createWithWidget(param);
 //}
 
-//GLView* GLView::createWithWidget(QWidget *param)
+//GLViewImpl* GLViewImpl::createWithWidget(QWidget *param)
 //{
 //    do {
 //        CC_BREAK_IF(param == NULL);
-//        CC_BREAK_IF(s_pMainWindow);         /// if have already created GLView before, just returns.
+//        CC_BREAK_IF(s_pMainWindow);         /// if have already created GLViewImpl before, just returns.
 
-//        s_pMainWindow = new GLView;
+//        s_pMainWindow = new GLViewImpl;
 ////        if(!s_pMainWindow->_createInWidget(param)) {
 ////            CC_SAFE_DELETE(s_pMainWindow);
 ////        }
@@ -345,17 +345,17 @@ GLView* GLView::create(const std::string &viewName)
 //    return s_pMainWindow;
 //}
 
-GLView* GLView::createWithRect(const std::string &viewName, Rect rect, float frameZoomFactor)
+GLViewImpl* GLViewImpl::createWithRect(const std::string &viewName, Rect rect, float frameZoomFactor)
 {
     return NULL;
 }
 
-GLView* GLView::createWithFullScreen(const std::string &viewName)
+GLViewImpl* GLViewImpl::createWithFullScreen(const std::string &viewName)
 {
     return NULL;
 }
 
-void GLView::mouseMove(QMouseEvent *event)
+void GLViewImpl::mouseMove(QMouseEvent *event)
 {
     if (/*! m_pDelegate || */! m_pTouch)
         return;
@@ -373,13 +373,13 @@ void GLView::mouseMove(QMouseEvent *event)
     return;
 }
 
-void GLView::setWindowRect(const Rect& rect)
+void GLViewImpl::setWindowRect(const Rect& rect)
 {
     m_WindowOrigin = rect.origin;
     setFrameSize(rect.size.width, rect.size.height);
 }
 
-void GLView::mousePress(QMouseEvent *event)
+void GLViewImpl::mousePress(QMouseEvent *event)
 {
     if (/*! m_pDelegate ||*/ ! m_pTouch)
         return;
@@ -401,7 +401,7 @@ void GLView::mousePress(QMouseEvent *event)
     return;
 }
 
-void GLView::mouseRelease(QMouseEvent *event)
+void GLViewImpl::mouseRelease(QMouseEvent *event)
 {
     if (/*! m_pDelegate || */! m_pTouch)
         return;
@@ -433,13 +433,13 @@ void GLView::mouseRelease(QMouseEvent *event)
     return;
 }
 
-void GLView::setAccelerometerKeyHook(ACCEL_PTRFUN func)
+void GLViewImpl::setAccelerometerKeyHook(ACCEL_PTRFUN func)
 {
 //    if (m_window)
 //        m_window->setKeyEventFunc(func);
 }
 
-//QWidget *GLView::getGLWidget(void)
+//QWidget *GLViewImpl::getGLWidget(void)
 //{
 //    return m_window;
 //}

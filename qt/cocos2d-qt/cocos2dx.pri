@@ -49,8 +49,7 @@ macx {
 
 INCLUDEPATH += \
 $$PWD/src \
-$$PWD/../../cocos \
-$$PWD/../../cocos/platform
+$$PWD/../../cocos
 
 
 SOURCES += \

@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 
-#include "CCGLView.h"
+#include "CCGLViewImpl.h"
 #include "cocos2d.h"
 #include "HelloWorldScene.h"
 
@@ -20,8 +20,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 {
     // initialize director
     Director* pDirector = Director::getInstance();
-    cocos2d::GLView* eglView = cocos2d::GLView::create("test");
-//    cocos2d::GLView *eglView = cocos2d::GLView::createWithRect("HelloCocos2d",cocos2d::Rect(0,0,960,640));
+    cocos2d::GLViewImpl* eglView = cocos2d::GLViewImpl::create("test");
+//    cocos2d::GLViewImpl *eglView = cocos2d::GLViewImpl::createWithRect("HelloCocos2d",cocos2d::Rect(0,0,960,640));
 
     //    eglView->setFrameSize(960, 640);
     eglView->setDesignResolutionSize(960,640,ResolutionPolicy::NO_BORDER);

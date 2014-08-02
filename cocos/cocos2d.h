@@ -168,7 +168,7 @@ THE SOFTWARE.
 #include "platform/CCImage.h"
 #include "platform/CCSAXParser.h"
 #include "platform/CCThread.h"
-#include "platform/CCGLViewProtocol.h"
+#include "platform/CCGLView.h"
 #include "base/CCPlatformConfig.h"
 #include "base/CCPlatformMacros.h"
 

@@ -21,18 +21,18 @@ SOURCES += \
     src/CCCommon.cpp \
     src/CCDevice.cpp \
     src/CCFileUtilsQt.cpp \
-    src/CCGLView.cpp \
     src/fborender/FboRenderer.cpp \
     src/objectrender/ObjectRenderer.cpp \
-    src/threadrender/ThreadRenderer.cpp
+    src/threadrender/ThreadRenderer.cpp \
+    src/CCGLViewImpl.cpp
 
 HEADERS += src/precompiled.h \
     src/CCApplication.h \
     src/CCFileUtilsQt.h \
-    src/CCGLView.h \
     src/fborender/FboRenderer.h \
     src/objectrender/ObjectRenderer.h \
-    src/threadrender/ThreadRenderer.h
+    src/threadrender/ThreadRenderer.h \
+    src/CCGLViewImpl.h
 
 
 #unix {

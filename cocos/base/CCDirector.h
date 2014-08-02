@@ -172,8 +172,8 @@ public:
     * @js NA
     * @lua NA
     */
-    inline GLViewProtocol* getOpenGLView() { return _openGLView; }
-    GLViewProtocol* setOpenGLView(GLViewProtocol *openGLView);
+    inline GLView* getOpenGLView() { return _openGLView; }
+    GLView* setOpenGLView(GLView *openGLView);
 
     TextureCache* getTextureCache() const;
 

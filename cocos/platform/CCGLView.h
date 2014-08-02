@@ -208,13 +208,6 @@ public:
 
     /** returns the current Resolution policy */
     ResolutionPolicy getResolutionPolicy() const { return _resolutionPolicy; }
-    
-    virtual bool isRetinaDisplay() const {return false;}
-    virtual int getRetinaFactor() const {return 1;}
-    virtual float getFrameZoomFactor() {return 1.0f;}
-    virtual float getContentScaleFactor() const { return 1.0f;}
-    
-    
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
     virtual HWND getWin32Window() = 0;

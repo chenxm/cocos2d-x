@@ -6,8 +6,8 @@
 #include <QMouseEvent>
 #include <vector>
 #include "CCStdC.h"
-#include "CCCommon.h"
-#include "CCGLViewProtocol.h"
+#include "platform/CCCommon.h"
+#include "platform/CCGLView.h"
 
 typedef enum {
     GLVIEW_WINDOW_MODE_FIXSIZE = 0,     // GL window with the fixed windows size
@@ -20,11 +20,11 @@ class GLWidget;
 
 NS_CC_BEGIN
 
-class CC_DLL GLView : public GLViewProtocol, public Ref
+class CC_DLL GLViewImpl : public GLView, public Ref
 {
 public:
-    explicit GLView();
-    virtual ~GLView();
+    explicit GLViewImpl();
+    virtual ~GLViewImpl();
 
 private:
     /* override functions */
@@ -36,6 +36,15 @@ private:
     virtual void setViewName(const std::string& pszViewName);
     virtual void setViewPortInPoints(float x , float y , float w , float h);
     virtual void setScissorInPoints(float x , float y , float w , float h);
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+    virtual HWND getWin32Window() {return 0;}
+#endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) */
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+    virtual id getCocoaWindow(){return 0;}
+#endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) */
+
 public:
     void setWindowRect(const Rect& rect);
 //    void resize(int width, int height);
@@ -52,9 +61,9 @@ public:
     /**
     @brief    get the shared main open gl window
     */
-    static GLView* create(const std::string& viewName);
-    static GLView* createWithRect(const std::string& viewName, Rect rect, float frameZoomFactor = 1.0);
-    static GLView* createWithFullScreen(const std::string& viewName);
+    static GLViewImpl* create(const std::string& viewName);
+    static GLViewImpl* createWithRect(const std::string& viewName, Rect rect, float frameZoomFactor = 1.0);
+    static GLViewImpl* createWithFullScreen(const std::string& viewName);
 
     // Qt
     void mouseMove(QMouseEvent *event);

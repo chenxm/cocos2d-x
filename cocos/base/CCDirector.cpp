@@ -60,7 +60,6 @@ THE SOFTWARE.
 #include "base/CCConfiguration.h"
 #include "base/CCNS.h"
 #include "math/CCMath.h"
-#include "CCApplication.h"
 
 /**
  Position of the FPS
@@ -357,10 +356,10 @@ float Director::getDeltaTime() const
 {
     return _deltaTime;
 }
-GLViewProtocol* Director::setOpenGLView(GLViewProtocol *openGLView)
+GLView* Director::setOpenGLView(GLView *openGLView)
 {
     CCASSERT(openGLView, "opengl view should not be null");
-    GLViewProtocol* oldGLView = nullptr;
+    GLView* oldGLView = nullptr;
 
     if (_openGLView != openGLView)
     {
