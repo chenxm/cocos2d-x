@@ -24,7 +24,6 @@
  ****************************************************************************/
 
 #include "CCScrollView.h"
-#include "CCGLViewProtocol.h"
 #include "platform/CCDevice.h"
 #include "2d/CCActionInstant.h"
 #include "2d/CCActionInterval.h"

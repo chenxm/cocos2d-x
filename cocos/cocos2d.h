@@ -205,7 +205,7 @@ THE SOFTWARE.
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
     #include "platform/linux/CCPlatformDefine.h"
     #include "platform/linux/CCApplication.h"
-    #include "platform/desktop/CCGLView.h"
+    #include "platform/desktop/CCGLViewImpl.h"
     #include "platform/linux/CCGL.h"
     #include "platform/linux/CCStdC.h"
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_LINUX

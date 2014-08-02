@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2013 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
@@ -60,8 +60,7 @@ THE SOFTWARE.
 #include "base/CCConfiguration.h"
 #include "base/CCNS.h"
 #include "math/CCMath.h"
-//#include "CCApplication.h"
-#include "CCGLViewProtocol.h"
+#include "CCApplication.h"
 
 /**
  Position of the FPS
@@ -263,7 +262,7 @@ void Director::drawScene()
 
     if (_openGLView)
     {
-        _openGLView->pollInputEvents();
+        _openGLView->pollEvents();
     }
 
     //tick before glClear: issue #533
