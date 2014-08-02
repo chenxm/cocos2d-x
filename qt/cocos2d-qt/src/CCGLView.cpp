@@ -329,20 +329,12 @@ void GLView::setViewPortInPoints(float x , float y , float w , float h)
 {
 //    CCTRACE();
     GLViewProtocol::setViewPortInPoints(x, y, w, h);
-//    glViewport((GLint)(x * _scaleX * m_fFrameZoomFactor + _viewPortRect.origin.x * m_fFrameZoomFactor),
-//        (GLint)(y * _scaleY  * m_fFrameZoomFactor + _viewPortRect.origin.y * m_fFrameZoomFactor),
-//        (GLsizei)(w * _scaleX * m_fFrameZoomFactor),
-//        (GLsizei)(h * _scaleY * m_fFrameZoomFactor));
 }
 
 void GLView::setScissorInPoints(float x , float y , float w , float h)
 {
 //    CCTRACE();
     GLViewProtocol::setScissorInPoints(x, y, w, h);
-//    glScissor((GLint)(x * _scaleX * m_fFrameZoomFactor + _viewPortRect.origin.x * m_fFrameZoomFactor),
-//              (GLint)(y * _scaleY * m_fFrameZoomFactor + _viewPortRect.origin.y * m_fFrameZoomFactor),
-//              (GLsizei)(w * _scaleX * m_fFrameZoomFactor),
-//              (GLsizei)(h * _scaleY * m_fFrameZoomFactor));
 }
 
 GLView* GLView::create(const std::string &viewName)

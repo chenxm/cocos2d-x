@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2014-07-30T16:57:40
-#
-#-------------------------------------------------
-
 QT       += quick opengl
 
 
@@ -20,6 +14,7 @@ DEFINES += CC_TARGET_OS_MAC=1
 PRECOMPILED_HEADER  += src/precompiled.h
 
 include(cocos2dx.pri)
+
 
 SOURCES += \
     src/CCApplication.cpp \

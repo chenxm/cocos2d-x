@@ -77,22 +77,16 @@ public:
     @brief    get the shared main open gl window
     */
     static GLView* create(const std::string& viewName);
-//    static GLView* create(QWidget* param /*= NULL*/);
-//    static GLView* createWithWidget(QWidget* param = NULL);
     static GLView* createWithRect(const std::string& viewName, Rect rect, float frameZoomFactor = 1.0);
     static GLView* createWithFullScreen(const std::string& viewName);
-
-//    static void purgeSharedOpenGLView();
 
     // Qt
     void mouseMove(QMouseEvent *event);
     void mousePress(QMouseEvent *event);
     void mouseRelease(QMouseEvent *event);
     void setAccelerometerKeyHook(ACCEL_PTRFUN func);
-//    QWidget * getGLWidget(void);
 
 private:
-//    virtual bool _createInWidget();
     bool initGL();
     void destroyGL();
 
@@ -103,11 +97,8 @@ private:
     float m_fFrameZoomFactor;
     float m_fScreenScaleFactor;
 
-//    GLViewWindowModeType GLViewWindowMode;
     std::vector<Touch*> * m_pSet;
     Touch * m_pTouch;
-//    GLWidget* m_window;
-//    QWidget * m_glParentWidget;
 };
 
 NS_CC_END

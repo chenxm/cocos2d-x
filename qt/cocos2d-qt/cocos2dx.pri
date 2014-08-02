@@ -37,8 +37,8 @@ macx {
     INCLUDEPATH += $$PWD/../../external/lua/luajit/include
     LIBS += -L$$PWD/../../external/lua/luajit/prebuilt/mac -lluajit
 
-    INCLUDEPATH += /opt/local/include
-    LIBS += /opt/local/lib/libGLEW.a
+    INCLUDEPATH += /usr/include
+    LIBS += /usr/lib/libGLEW.a
 
     LIBS += $$PWD/../lib/mac/libcocos2d.a
 
