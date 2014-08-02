@@ -74,7 +74,7 @@ int Application::run()
     long curTime = 0L;
     
     auto director = Director::getInstance();
-    auto glview = (GLView*)director->getOpenGLView();
+    auto glview = director->getOpenGLView();
     
     // Retain glview to avoid glview being released in the while loop
     glview->retain();

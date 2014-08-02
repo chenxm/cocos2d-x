@@ -31,9 +31,8 @@ THE SOFTWARE.
 #include "CCFileUtils.h"
 #include "base/CCDirector.h"
 #include "CCSAXParser.h"
-#include "cocos2d.h"
-//#include "CCDictionary.h"
-//#include "unzip.h"
+#include "CCDictionary.h"
+#include "unzip.h"
 
 #include "CCFileUtilsApple.h"
 

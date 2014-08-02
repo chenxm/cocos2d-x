@@ -29,7 +29,6 @@
 #include "controller.h"
 #include "cocostudio/CocoStudio.h"
 #include "extensions/cocos-ext.h"
-#include "CCGLView.h"
 
 USING_NS_CC;
 
@@ -55,9 +54,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        GLView* oldglview = GLView::create("Cpp Tests");
-        oldglview->retain();
-        glview = oldglview;
+        glview = GLView::create("Cpp Tests");
         director->setOpenGLView(glview);
     }
 

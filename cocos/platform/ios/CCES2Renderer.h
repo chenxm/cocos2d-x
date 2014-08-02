@@ -31,7 +31,7 @@
 #include "base/CCPlatformConfig.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
-//#import "CCPlatformMacros.h"
+#import "CCPlatformMacros.h"
 #import "CCESRenderer.h"
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>

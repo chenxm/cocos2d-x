@@ -68,13 +68,12 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import "CCGLView.h"
 #import "CCEAGLView.h"
 #import "CCES2Renderer.h"
-//#import "CCDirector.h"
-//#import "CCSet.h"
-//#import "CCTouch.h"
-//#import "CCIMEDispatcher.h"
+#import "CCDirector.h"
+#import "CCSet.h"
+#import "CCTouch.h"
+#import "CCIMEDispatcher.h"
 #import "OpenGL_Internal.h"
 #import "CCGLView.h"
-#import "cocos2d.h"
 //CLASS IMPLEMENTATIONS:
 
 #define IOS_MAX_TOUCHES_COUNT     10

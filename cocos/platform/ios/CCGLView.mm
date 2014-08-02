@@ -31,9 +31,8 @@
 #include "CCEAGLView.h"
 #include "CCDirectorCaller.h"
 #include "CCGLView.h"
+#include "CCSet.h"
 #include "base/CCTouch.h"
-#include "cocos2d.h"
-#include "CCGLView.h"
 
 NS_CC_BEGIN
 

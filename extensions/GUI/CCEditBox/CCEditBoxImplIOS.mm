@@ -31,7 +31,6 @@
 #include "CCEditBox.h"
 #import "CCEAGLView.h"
 
-
 #define getEditBoxImplIOS() ((cocos2d::extension::EditBoxImplIOS*)editBox_)
 
 static const int CC_EDIT_BOX_PADDING = 5;
@@ -92,7 +91,7 @@ static const int CC_EDIT_BOX_PADDING = 5;
 -(void) doAnimationWhenKeyboardMoveWithDuration:(float)duration distance:(float)distance
 {
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
-    CCEAGLView *eaglview = (CCEAGLView *) ((cocos2d::GLView*)view)->getEAGLView();
+    CCEAGLView *eaglview = (CCEAGLView *) view->getEAGLView();
 
     [eaglview doAnimationWhenKeyboardMoveWithDuration:duration distance:distance];
 }
@@ -119,7 +118,7 @@ static const int CC_EDIT_BOX_PADDING = 5;
 -(void) openKeyboard
 {
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
-    CCEAGLView *eaglview = (CCEAGLView *) ((cocos2d::GLView*)view)->getEAGLView();
+    CCEAGLView *eaglview = (CCEAGLView *) view->getEAGLView();
 
     [eaglview addSubview:textField_];
     [textField_ becomeFirstResponder];
@@ -142,7 +141,7 @@ static const int CC_EDIT_BOX_PADDING = 5;
 -(void)animationSelector
 {
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
-    CCEAGLView *eaglview = (CCEAGLView *) ((cocos2d::GLView*)view)->getEAGLView();
+    CCEAGLView *eaglview = (CCEAGLView *) view->getEAGLView();
 
     [eaglview doAnimationWhenAnotherEditBeClicked];
 }
@@ -153,7 +152,7 @@ static const int CC_EDIT_BOX_PADDING = 5;
     editState_ = YES;
 
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
-    CCEAGLView *eaglview = (CCEAGLView *) ((cocos2d::GLView*)view)->getEAGLView();
+    CCEAGLView *eaglview = (CCEAGLView *) view->getEAGLView();
 
     if ([eaglview isKeyboardShown])
     {
@@ -554,7 +553,7 @@ void EditBoxImplIOS::setPlaceHolder(const char* pText)
 static CGPoint convertDesignCoordToScreenCoord(const Vec2& designCoord, bool bInRetinaMode)
 {
     auto glview = cocos2d::Director::getInstance()->getOpenGLView();
-    CCEAGLView *eaglview = (CCEAGLView *) ((GLView*)glview)->getEAGLView();
+    CCEAGLView *eaglview = (CCEAGLView *) glview->getEAGLView();
 
     float viewH = (float)[eaglview getHeight];
     

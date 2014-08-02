@@ -28,8 +28,8 @@
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
 #import <UIKit/UIKit.h>
-#include "cocos2d.h"
-//#import "CCGeometry.h"
+
+#import "CCGeometry.h"
 #import "CCDirectorCaller.h"
 
 NS_CC_BEGIN
