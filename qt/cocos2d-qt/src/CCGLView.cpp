@@ -240,9 +240,9 @@ void GLView::setViewName(const std::string &pszViewName)
 //    }
 }
 
-void GLView::resize(int width, int height)
-{
-    do {
+//void GLView::resize(int width, int height)
+//{
+//    do {
 //        CC_BREAK_IF(!m_window);
 //        CC_BREAK_IF (Director::getInstance()->getOpenGLView() == NULL);
 
@@ -254,16 +254,16 @@ void GLView::resize(int width, int height)
 //            setDesignResolutionSize(width, height, ResolutionPolicy::EXACT_FIT);
 //        }
 
-    } while(false);
-    return;
-}
+//    } while(false);
+//    return;
+//}
 
 void GLView::setFrameZoomFactor(float fZoomFactor)
 {
 //    CCTRACE();
     m_fFrameZoomFactor = fZoomFactor;
-    resize(_screenSize.width * fZoomFactor, _screenSize.height * fZoomFactor);
-    centerWindow();
+//    resize(_screenSize.width * fZoomFactor, _screenSize.height * fZoomFactor);
+//    centerWindow();
     Director::getInstance()->setProjection(Director::getInstance()->getProjection());
 }
 
@@ -277,8 +277,8 @@ void GLView::setFrameSize(float width, float height)
 //    CCTRACE();
     GLViewProtocol::setFrameSize(width, height);
 
-    resize(width, height); // adjust window size for menubar
-    centerWindow();
+//    resize(width, height); // adjust window size for menubar
+//    centerWindow();
 }
 
 void GLView::centerWindow()
@@ -376,6 +376,7 @@ void GLView::mouseMove(QMouseEvent *event)
 void GLView::setWindowRect(const Rect& rect)
 {
     m_WindowOrigin = rect.origin;
+    setFrameSize(rect.size.width, rect.size.height);
 }
 
 void GLView::mousePress(QMouseEvent *event)
