@@ -1,30 +1,5 @@
-/****************************************************************************
-Copyright (c) 2010 cocos2d-x.org
-Copyright (c) 2013-2014 Zhu Delun (delun.zhu@gmail.com)
-
-http://www.cocos2d-x.org
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-****************************************************************************/
-
-#ifndef __CC_EGLVIEW_WIN32_H__
-#define __CC_EGLVIEW_WIN32_H__
+#ifndef __CC_GLVIEW_H__
+#define __CC_GLVIEW_H__
 #include "GL/glew.h"
 #include "cocos2d.h"
 
@@ -51,7 +26,7 @@ public:
     explicit GLView();
     virtual ~GLView();
 
-public:
+private:
     /* override functions */
     virtual bool isOpenGLReady();
     virtual void end();
@@ -59,18 +34,19 @@ public:
     virtual void setFrameSize(float width, float height);
     virtual void setIMEKeyboardState(bool bOpen);
     virtual void setViewName(const std::string& pszViewName);
-
-    void resize(int width, int height);
-    /* 
+    virtual void setViewPortInPoints(float x , float y , float w , float h);
+    virtual void setScissorInPoints(float x , float y , float w , float h);
+public:
+    void setWindowRect(const Rect& rect);
+//    void resize(int width, int height);
+    /*
      * Set zoom factor for frame. This method is for debugging big resolution (e.g.new ipad) app on desktop.
      */
     void setFrameZoomFactor(float fZoomFactor);
-	float getFrameZoomFactor();
+    float getFrameZoomFactor();
     void centerWindow();
 //    void moveWindow(int left, int top);
 
-    virtual void setViewPortInPoints(float x , float y , float w , float h);
-    virtual void setScissorInPoints(float x , float y , float w , float h);
     
     // static function
     /**
@@ -96,6 +72,7 @@ private:
 //    bool m_bSupportTouch;
     float m_fFrameZoomFactor;
     float m_fScreenScaleFactor;
+    Vec2 m_WindowOrigin;
 
     std::vector<Touch*> * m_pSet;
     Touch * m_pTouch;
@@ -103,4 +80,4 @@ private:
 
 NS_CC_END
 
-#endif    // end of __CC_EGLVIEW_WIN32_H__
+#endif    // __CC_GLVIEW_H__

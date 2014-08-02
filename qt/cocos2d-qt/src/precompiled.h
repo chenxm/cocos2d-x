@@ -1,5 +1,5 @@
-#ifndef COCOS2DXQT_PCH
-#define COCOS2DXQT_PCH
+#ifndef __PRECOMPILED_H__
+#define __PRECOMPILED_H__
 
 #if defined __cplusplus
     #include <string>
@@ -25,8 +25,6 @@
 #include <sys/socket.h>
 
 
-#ifdef CC_TARGET_OS_MAC
 #include "GL/glew.h"
-#endif
 
-#endif // COCOS2DXQT_PCH
+#endif // __PRECOMPILED_H__

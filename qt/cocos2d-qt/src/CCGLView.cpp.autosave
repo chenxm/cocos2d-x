@@ -277,8 +277,8 @@ void GLView::setFrameSize(float width, float height)
 //    CCTRACE();
     GLViewProtocol::setFrameSize(width, height);
 
-    resize(width, height); // adjust window size for menubar
-    centerWindow();
+//    resize(width, height); // adjust window size for menubar
+//    centerWindow();
 }
 
 void GLView::centerWindow()
@@ -376,6 +376,7 @@ void GLView::mouseMove(QMouseEvent *event)
 void GLView::setWindowRect(const Rect& rect)
 {
     m_WindowOrigin = rect.origin;
+    setFrameSize();
 }
 
 void GLView::mousePress(QMouseEvent *event)
