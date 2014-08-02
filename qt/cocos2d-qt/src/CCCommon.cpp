@@ -1,4 +1,4 @@
-#include "CCCommon.h"
+#include "platform/CCCommon.h"
 #include "CCStdC.h"
 //#include <QMessageBox>
 

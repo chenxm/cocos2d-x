@@ -1,7 +1,7 @@
 #ifndef __CC_FILEUTILSQT_H__
 #define __CC_FILEUTILSQT_H__
 
-#include "CCFileUtils.h"
+#include "platform/CCFileUtils.h"
 #include "cocos2d.h"
 #include <string>
 #include <vector>

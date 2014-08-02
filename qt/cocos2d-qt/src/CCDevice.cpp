@@ -1,6 +1,6 @@
 #include "cocos2d.h"
-#include "CCDevice.h"
-#include "CCImage.h"
+#include "platform/CCDevice.h"
+#include "platform/CCImage.h"
 #include <QImage>
 #include <QFontDatabase>
 #include <QPainter>
