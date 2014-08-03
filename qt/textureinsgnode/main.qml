@@ -8,8 +8,11 @@ Item {
 
     Renderer {
         id: renderer
-        anchors.fill: parent
-        anchors.margins: 0
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.margins: 100
 
         // The transform is just to show something interesting..
         transform: [
@@ -29,9 +32,9 @@ Item {
 
     Text {
         id: label
-        anchors.bottom: renderer.bottom
-        anchors.left: renderer.left
-        anchors.right: renderer.right
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
         anchors.margins: 20
         wrapMode: Text.WordWrap
         text: "The blue rectangle with the vintage 'Q' is an FBO, rendered by the application on the scene graph rendering thread. The FBO is managed and displayed using the QQuickFramebufferObject convenience class."

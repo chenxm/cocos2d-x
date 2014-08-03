@@ -6,7 +6,20 @@ Item {
     width: 800
     height: 600
 
-    Squircle {}
+    Squircle {
+        id: glwindow
+        anchors.fill: parent
+        anchors.margins: 100
+    }
+
+    Rectangle {
+        color: Qt.rgba(0, 0, 0, 0)
+        radius: 10
+        border.width: 1
+        border.color: "white"
+        anchors.fill: glwindow
+        anchors.margins: 0
+    }
 
     Rectangle {
         color: Qt.rgba(0, 0, 1, 0.5)
