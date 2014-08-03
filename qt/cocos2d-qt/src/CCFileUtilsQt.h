@@ -1,10 +1,9 @@
 #ifndef __CC_FILEUTILSQT_H__
 #define __CC_FILEUTILSQT_H__
-
-#include "platform/CCFileUtils.h"
-#include "cocos2d.h"
 #include <string>
 #include <vector>
+#include "cocos2d.h"
+#include "platform/CCFileUtils.h"
 
 NS_CC_BEGIN
 

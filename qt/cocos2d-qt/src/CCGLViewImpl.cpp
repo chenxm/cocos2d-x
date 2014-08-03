@@ -77,67 +77,19 @@ static bool glew_dynamic_binding()
 //////////////////////////////////////////////////////////////////////////
 // impliment GLViewImpl
 //////////////////////////////////////////////////////////////////////////
-//static GLViewImpl* s_pMainWindow = NULL;
-
-//static void mouseMove(QMouseEvent *event)
-//{
-//    do {
-//        CC_BREAK_IF(s_pMainWindow == NULL);
-//        s_pMainWindow->mouseMove(event);
-//    } while (false);
-//    return;
-//}
-
-//static void mousePress(QMouseEvent *event)
-//{
-//    do {
-//        CC_BREAK_IF(s_pMainWindow == NULL);
-//        s_pMainWindow->mousePress(event);
-//    } while (false);
-//    return;
-//}
-
-//static void mouseRelease(QMouseEvent *event)
-//{
-//    do {
-//        CC_BREAK_IF(s_pMainWindow == NULL);
-//        s_pMainWindow->mouseRelease(event);
-//    } while(false);
-//    return;
-//}
-
-//static void viewResize(QResizeEvent *event)
-//{
-//    do {
-//        CC_BREAK_IF(s_pMainWindow == NULL);
-//        s_pMainWindow->resize(event->size().width(), event->size().height());
-//    } while (false);
-//    return;
-//}
-
 GLViewImpl::GLViewImpl()
-    : m_bCaptured(false)
-    , m_fFrameZoomFactor(1.0f)
-//    , m_bSupportTouch(false)
-    , m_bIsInit(false)
-//    , m_window(NULL)
-    , m_fScreenScaleFactor(1.0f)
-//    , m_glParentWidget(NULL)
-//    , GLViewWindowMode(GLVIEW_WINDOW_MODE_FIXSIZE)
+    : mIsInitialed(false)
+    , mFrameZoomFactor(1.0f)
 {
-    m_pTouch = new Touch;
-    m_pSet = new std::vector<Touch*>();
 }
 
 GLViewImpl::~GLViewImpl()
 {
-    CC_SAFE_DELETE(m_pTouch);
-    CC_SAFE_DELETE(m_pSet);
 }
 
 bool GLViewImpl::initGL()
 {
-    if(m_bIsInit)
+    if(mIsInitialed)
     {
         return false;
     }
@@ -192,7 +144,7 @@ bool GLViewImpl::initGL()
     // Enable point size by default on windows.
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 
-    m_bIsInit = true;
+    mIsInitialed = true;
     return true;
 }
 
@@ -202,27 +154,19 @@ void GLViewImpl::destroyGL()
 
 bool GLViewImpl::isOpenGLReady()
 {
-    return m_bIsInit;
+    return mIsInitialed;
 }
 
 void GLViewImpl::end()
 {
-    CC_SAFE_DELETE(m_pSet);
-    CC_SAFE_DELETE(m_pTouch);
-//    CC_SAFE_DELETE(m_glParentWidget);
-//    CC_SAFE_DELETE(m_window);
-
-//    s_pMainWindow = NULL;
     delete this;
 }
 
 void GLViewImpl::swapBuffers()
 {
-    if (m_bIsInit)
+    if (mIsInitialed)
     {
         /* Swap buffers */
-//        m_window->makeCurrent();
-//        m_window->swapBuffers();
     }
 }
 
@@ -235,41 +179,16 @@ void GLViewImpl::setIMEKeyboardState(bool /*bOpen*/)
 void GLViewImpl::setViewName(const std::string &pszViewName)
 {
     GLView::setViewName(pszViewName);
-//    if (m_glParentWidget) {
-//        m_glParentWidget->setWindowTitle(getViewName().c_str());
-//    }
 }
-
-//void GLViewImpl::resize(int width, int height)
-//{
-//    do {
-//        CC_BREAK_IF(!m_window);
-//        CC_BREAK_IF (Director::getInstance()->getOpenGLView() == NULL);
-
-//        if (GLViewWindowMode == GLVIEW_WINDOW_MODE_FIXSIZE) {
-//            m_window->setFixedSize(width, height);
-//            m_glParentWidget->setFixedSize(width, height);
-//        }
-//        else {
-//            setDesignResolutionSize(width, height, ResolutionPolicy::EXACT_FIT);
-//        }
-
-//    } while(false);
-//    return;
-//}
 
 void GLViewImpl::setFrameZoomFactor(float fZoomFactor)
 {
-//    CCTRACE();
-    m_fFrameZoomFactor = fZoomFactor;
-//    resize(_screenSize.width * fZoomFactor, _screenSize.height * fZoomFactor);
-//    centerWindow();
-    Director::getInstance()->setProjection(Director::getInstance()->getProjection());
+    mFrameZoomFactor = fZoomFactor;
 }
 
 float GLViewImpl::getFrameZoomFactor()
 {
-    return m_fFrameZoomFactor;
+    return mFrameZoomFactor;
 }
 
 void GLViewImpl::setFrameSize(float width, float height)
@@ -277,28 +196,10 @@ void GLViewImpl::setFrameSize(float width, float height)
     _screenSize = Size(width, height);
 }
 
-//void GLViewImpl::centerWindow()
-//{
-//    CCTRACE();
-//    if (m_glParentWidget && !m_glParentWidget->parent()) {
-//        QDesktopWidget *w = qApp->desktop();
-//        QRect rect = w->screenGeometry();
-//        m_glParentWidget->move((rect.width()-m_glParentWidget->width())/2.0f
-//                              ,(rect.height()-m_glParentWidget->height())/2.0f);
-//    }
-//}
-
-//void GLViewImpl::moveWindow(int left, int top)
-//{
-//    if (m_glParentWidget && !m_glParentWidget->parent()) {
-//        m_glParentWidget->move(left, top);
-//    }
-//}
-
 void GLViewImpl::setViewPortInPoints(float x , float y , float w , float h)
 {
-    glViewport((GLint)(m_WindowOrigin.x + x * _scaleX + _viewPortRect.origin.x),
-               (GLint)(m_WindowOrigin.y + y * _scaleY + _viewPortRect.origin.y),
+    glViewport((GLint)(mViewportOrigin.x + x * _scaleX + _viewPortRect.origin.x),
+               (GLint)(mViewportOrigin.y + y * _scaleY + _viewPortRect.origin.y),
                (GLsizei)(w * _scaleX),
                (GLsizei)(h * _scaleY));
 }
@@ -310,7 +211,6 @@ void GLViewImpl::resetViewPort()
 
 void GLViewImpl::setScissorInPoints(float x , float y , float w , float h)
 {
-//    CCTRACE();
     GLView::setScissorInPoints(x, y, w, h);
 }
 
@@ -382,93 +282,10 @@ void GLViewImpl::updateDesignResolutionSize()
     GLView::updateDesignResolutionSize();
 }
 
-void GLViewImpl::mouseMove(QMouseEvent *event)
-{
-    if (/*! m_pDelegate || */! m_pTouch)
-        return;
-
-    if (! m_bCaptured)
-        return;
-
-    m_pTouch->setTouchInfo(0, (float)(event->x()) / m_fScreenScaleFactor, (float)(event->y()) / m_fScreenScaleFactor);
-
-    intptr_t id = m_pTouch->getID();
-    float x = m_pTouch->getLocationInView().x;
-    float y = m_pTouch->getLocationInView().y;
-    this->handleTouchesMove(1, &id, &x, &y);
-
-    return;
-}
-
 void GLViewImpl::setWindowRect(const Rect& rect)
 {
-    m_WindowOrigin = rect.origin;
+    mViewportOrigin = rect.origin;
     setFrameSize(rect.size.width, rect.size.height);
 }
-
-void GLViewImpl::mousePress(QMouseEvent *event)
-{
-    if (/*! m_pDelegate ||*/ ! m_pTouch)
-        return;
-
-    if (event->button() != Qt::LeftButton)
-        return;
-
-    m_bCaptured = true;
-
-    m_pTouch->setTouchInfo(0, (float)(event->x()) / m_fScreenScaleFactor,
-        (float)(event->y()) / m_fScreenScaleFactor);
-    m_pSet->push_back(m_pTouch);
-
-    intptr_t id = m_pTouch->getID();
-    float x = m_pTouch->getLocationInView().x;
-    float y = m_pTouch->getLocationInView().y;
-    this->handleTouchesBegin(1, &id, &x, &y);
-
-    return;
-}
-
-void GLViewImpl::mouseRelease(QMouseEvent *event)
-{
-    if (/*! m_pDelegate || */! m_pTouch)
-        return;
-
-    if (event->button() != Qt::LeftButton)
-        return;
-
-    m_bCaptured = false;
-
-    m_pTouch->setTouchInfo(0, (float)(event->x()) / m_fScreenScaleFactor,
-        (float)(event->y()) / m_fScreenScaleFactor);
-
-    intptr_t id = m_pTouch->getID();
-    float x = m_pTouch->getLocationInView().x;
-    float y = m_pTouch->getLocationInView().y;
-    this->handleTouchesEnd(1, &id, &x, &y);
-
-    /// remove the touch info from m_pSet
-    for( std::vector<Touch*>::iterator iteEachTouch = m_pSet->begin();
-         iteEachTouch != m_pSet->end();
-         ++iteEachTouch)
-    {
-        if (*iteEachTouch == m_pTouch) {
-            m_pSet->erase(iteEachTouch);
-            break;
-        }
-    }
-
-    return;
-}
-
-void GLViewImpl::setAccelerometerKeyHook(ACCEL_PTRFUN func)
-{
-//    if (m_window)
-//        m_window->setKeyEventFunc(func);
-}
-
-//QWidget *GLViewImpl::getGLWidget(void)
-//{
-//    return m_window;
-//}
 
 NS_CC_END

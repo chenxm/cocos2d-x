@@ -53,11 +53,11 @@ bool HelloWorld::init()
 
     MenuItemImage* pCloseItem = MenuItemImage::create("CloseNormal.png", "CloseSelected.png", [&](Ref* sender)->void {
         Director::getInstance()->end();
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_QT5)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
         exit(0);
 #endif
     });
-    pCloseItem->setPosition( Point(Director::getInstance()->getWinSize().width - 20, 20) );
+    pCloseItem->setPosition( Point(20, 20) );
 
     // create menu, it's an autorelease object
     Menu* pMenu = Menu::create(pCloseItem, NULL);

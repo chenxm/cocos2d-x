@@ -1,22 +1,12 @@
-#ifndef __CC_GLVIEW_H__
-#define __CC_GLVIEW_H__
+#ifndef __CC_GLVIEW_IMPL_H__
+#define __CC_GLVIEW_IMPL_H__
+#include <vector>
 #include "GL/glew.h"
 #include "cocos2d.h"
-
-#include <QMouseEvent>
-#include <vector>
 #include "CCStdC.h"
 #include "platform/CCCommon.h"
 #include "platform/CCGLView.h"
 
-typedef enum {
-    GLVIEW_WINDOW_MODE_FIXSIZE = 0,     // GL window with the fixed windows size
-    GLVIEW_WINDOW_MODE_RESIZABLE,       // resizable GL window
-}   GLViewWindowModeType;
-
-typedef void(*ACCEL_PTRFUN)(QKeyEvent *event);
-
-class GLWidget;
 
 NS_CC_BEGIN
 
@@ -64,28 +54,17 @@ public:
     void setFrameZoomFactor(float fZoomFactor);
     float getFrameZoomFactor();
     
-    // Qt
-    void mouseMove(QMouseEvent *event);
-    void mousePress(QMouseEvent *event);
-    void mouseRelease(QMouseEvent *event);
-    void setAccelerometerKeyHook(ACCEL_PTRFUN func);
-
 private:
     bool initGL();
     void destroyGL();
 
 private:
-    bool m_bIsInit;
-    bool m_bCaptured;
-//    bool m_bSupportTouch;
-    float m_fFrameZoomFactor;
-    float m_fScreenScaleFactor;
-    Vec2 m_WindowOrigin;
+    bool mIsInitialed;
+    float mFrameZoomFactor;
+    Vec2 mViewportOrigin;
 
-    std::vector<Touch*> * m_pSet;
-    Touch * m_pTouch;
 };
 
 NS_CC_END
 
-#endif    // __CC_GLVIEW_H__
+#endif    // __CC_GLVIEW_IMPL_H__
