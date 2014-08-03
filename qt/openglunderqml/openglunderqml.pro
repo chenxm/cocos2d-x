@@ -9,7 +9,7 @@ CONFIG += c++11
 CONFIG += precompile_header
 
 DEFINES += CC_TARGET_OS_MAC=1
-DEFINES += COCOS2D_DEBUG=1
+DEFINES += COCOS2D_DEBUG=2
 
 DEPLOY_RES  = $$PWD/media/deploy
 SCRIPTS_RES = $$PWD/../../cocos/scripting/lua-bindings/script

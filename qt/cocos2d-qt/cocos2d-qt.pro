@@ -32,7 +32,8 @@ HEADERS += src/precompiled.h \
     src/fborender/FboRenderer.h \
     src/objectrender/ObjectRenderer.h \
     src/threadrender/ThreadRenderer.h \
-    src/CCGLViewImpl.h
+    src/CCGLViewImpl.h \
+    src/QtCoordinate.h
 
 
 #unix {

@@ -7,6 +7,7 @@
 #include "cocos2d.h"
 #include "CCApplication.h"
 #include "CCGLViewImpl.h"
+#include "QtCoordinate.h"
 
 
 class RealObjectRenderer : public QObject
@@ -84,34 +85,10 @@ void ObjectRenderer::cleanup()
     }
 }
 
-const cocos2d::Rect FromQtToGL(const QRectF& rect, float devicePixelRatio, int windowHeight)
+void ObjectRenderer::resetWindowRect()
 {
-    cocos2d::Rect windowRect(
-                rect.x() * devicePixelRatio,
-                (windowHeight - rect.y() - rect.height()) * devicePixelRatio,
-                rect.width() * devicePixelRatio,
-                rect.height() * devicePixelRatio);
-    return windowRect;
-}
-const cocos2d::Vec2 FromQtToGL(const QPointF& point, float devicePixelRatio, int windowHeight)
-{
-    cocos2d::Vec2 vec2(
-                    point.x() * devicePixelRatio,
-                    (windowHeight - point.y()) * devicePixelRatio
-                );
-    return vec2;
-}
-const cocos2d::Vec2 FromQtToCocos(const QPointF& point, float devicePixelRatio, int windowHeight)
-{
-    cocos2d::Vec2 vec2(
-                    point.x() * devicePixelRatio,
-                    point.y() * devicePixelRatio
-                );
-    return vec2;
-}
-
-void ObjectRenderer::initializeWindow(const QRectF& rect)
-{
+    QRectF rect = boundingRect();
+    rect = mapRectToScene(rect);
     cocos2d::Rect windowRect = FromQtToGL(rect, window()->devicePixelRatio(), window()->height());
     cocos2d::GLViewImpl::createWithRect("test", windowRect, ResolutionPolicy::EXACT_FIT);
 }
@@ -125,7 +102,7 @@ void ObjectRenderer::onWindowSpaceChanged()
         rect = mapRectToScene(rect);
         cocos2d::Rect windowRect = FromQtToGL(rect, window()->devicePixelRatio(), window()->height());
         cocos2d::GLViewImpl* glView = (cocos2d::GLViewImpl*)cocos2d::Director::getInstance()->getOpenGLView();
-        glView->setWindowRect(windowRect);
+        glView->setViewportRect(windowRect);
         glView->updateDesignResolutionSize();
     }
 }
@@ -133,10 +110,7 @@ void ObjectRenderer::onWindowSpaceChanged()
 void ObjectRenderer::sync()
 {
     if (!mRenderer) {
-        QRectF rect = boundingRect();
-        rect = mapRectToScene(rect);
-        initializeWindow(rect);
-
+        resetWindowRect();
         mRenderer = new RealObjectRenderer();
         connect(window(), SIGNAL(beforeRendering()), mRenderer, SLOT(paint()), Qt::DirectConnection);
         cocos2d::Application::getInstance()->applicationDidFinishLaunching();

@@ -43,7 +43,8 @@ public:
     static GLViewImpl* createWithRect(const std::string& viewName, const Rect& rect, ResolutionPolicy resolutionPolicy);
 
 public:
-    void setWindowRect(const Rect& rect);
+    void setViewportRect(const Rect& rect);
+    void setViewportOrigin(const Vec2& point);
     void initializeDesignResolutionSize(float width, float height, ResolutionPolicy resolutionPolicy);
     void updateDesignResolutionSize();
     void resetViewPort();

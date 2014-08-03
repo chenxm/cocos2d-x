@@ -12,6 +12,8 @@
 #include "cocos2d.h"
 #include "CCApplication.h"
 #include "CCGLViewImpl.h"
+#include "QtCoordinate.h"
+
 
 class RenderThreadPool : public QObject
 {
@@ -66,14 +68,6 @@ RenderThreadPool::RenderThreadPool() : initialized(false)
 }
 
 RenderThreadPool RenderThreadPool::instance;
-
-void initializeWindow(const QSizeF& size)
-{
-    cocos2d::Rect windowRect(0, 0, size.width(), size.height());
-    cocos2d::GLViewImpl::createWithRect("test", windowRect, ResolutionPolicy::EXACT_FIT);
-}
-
-
 
 /*
  * The render thread shares a context with the scene graph and will
@@ -145,6 +139,13 @@ public slots:
         // Stop event processing, move the thread to GUI and make sure it is deleted.
         exit();
         moveToThread(QGuiApplication::instance()->thread());
+    }
+
+private:
+    void initializeWindow(const QSizeF& size)
+    {
+        cocos2d::Rect windowRect(0, 0, size.width(), size.height());
+        cocos2d::GLViewImpl::createWithRect("test", windowRect, ResolutionPolicy::EXACT_FIT);
     }
 
 signals:
@@ -233,6 +234,7 @@ private:
 ThreadRenderer::ThreadRenderer()
     : m_renderThread(0)
 {
+    setAcceptedMouseButtons(Qt::AllButtons);
     connect(this, SIGNAL(widthChanged()), this, SLOT(onSizeChanged()));
     connect(this, SIGNAL(heightChanged()), this, SLOT(onSizeChanged()));
     setFlag(ItemHasContents, true);
@@ -312,5 +314,124 @@ void ThreadRenderer::onSizeChanged()
 {
     CCLOG("onSizeChanged");
 }
+
+void ThreadRenderer::keyPressEvent(QKeyEvent *event)
+{
+    QQuickItem::keyPressEvent(event);
+}
+
+void ThreadRenderer::keyReleaseEvent(QKeyEvent *event)
+{
+    QQuickItem::keyReleaseEvent(event);
+}
+
+#ifndef QT_NO_IM
+void ThreadRenderer::inputMethodEvent(QInputMethodEvent *event)
+{
+    QQuickItem::inputMethodEvent(event);
+}
+#endif
+
+void ThreadRenderer::focusInEvent(QFocusEvent *event)
+{
+    QQuickItem::focusInEvent(event);
+}
+
+void ThreadRenderer::focusOutEvent(QFocusEvent *event)
+{
+    QQuickItem::focusOutEvent(event);
+}
+
+void ThreadRenderer::mousePressEvent(QMouseEvent *event)
+{
+    QPointF position = event->localPos();
+    cocos2d::Vec2 pos = FromQtToCocos(position, window()->devicePixelRatio(), height());
+    cocos2d::GLViewImpl* glView = (cocos2d::GLViewImpl*)cocos2d::Director::getInstance()->getOpenGLView();
+    intptr_t id = 0;
+    glView->handleTouchesBegin(1, &id, &pos.x, &pos.y);
+}
+
+void ThreadRenderer::mouseMoveEvent(QMouseEvent *event)
+{
+    QPointF position = event->localPos();
+    cocos2d::Vec2 pos = FromQtToCocos(position, window()->devicePixelRatio(), height());
+    cocos2d::GLViewImpl* glView = (cocos2d::GLViewImpl*)cocos2d::Director::getInstance()->getOpenGLView();
+    intptr_t id = 0;
+    glView->handleTouchesMove(1, &id, &pos.x, &pos.y);
+}
+
+void ThreadRenderer::mouseReleaseEvent(QMouseEvent *event)
+{
+    QPointF position = event->localPos();
+    cocos2d::Vec2 pos = FromQtToCocos(position, window()->devicePixelRatio(), height());
+    cocos2d::GLViewImpl* glView = (cocos2d::GLViewImpl*)cocos2d::Director::getInstance()->getOpenGLView();
+    intptr_t id = 0;
+    glView->handleTouchesEnd(1, &id, &pos.x, &pos.y);
+}
+
+void ThreadRenderer::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    QQuickItem::mouseDoubleClickEvent(event);
+}
+
+void ThreadRenderer::mouseUngrabEvent() // XXX todo - params?
+{
+    QQuickItem::mouseUngrabEvent();
+}
+
+void ThreadRenderer::touchUngrabEvent()
+{
+    QQuickItem::touchUngrabEvent();
+}
+
+#ifndef QT_NO_WHEELEVENT
+void ThreadRenderer::wheelEvent(QWheelEvent *event)
+{
+    QQuickItem::wheelEvent(event);
+}
+#endif
+
+void ThreadRenderer::touchEvent(QTouchEvent *event)
+{
+    QQuickItem::touchEvent(event);
+}
+
+void ThreadRenderer::hoverEnterEvent(QHoverEvent *event)
+{
+    QQuickItem::hoverEnterEvent(event);
+}
+
+void ThreadRenderer::hoverMoveEvent(QHoverEvent *event)
+{
+    QQuickItem::hoverMoveEvent(event);
+}
+
+void ThreadRenderer::hoverLeaveEvent(QHoverEvent *event)
+{
+    QQuickItem::hoverLeaveEvent(event);
+}
+
+#ifndef QT_NO_DRAGANDDROP
+void ThreadRenderer::dragEnterEvent(QDragEnterEvent *event)
+{
+    QQuickItem::dragEnterEvent(event);
+}
+
+void ThreadRenderer::dragMoveEvent(QDragMoveEvent *event)
+{
+    QQuickItem::dragMoveEvent(event);
+}
+
+void ThreadRenderer::dragLeaveEvent(QDragLeaveEvent *event)
+{
+    QQuickItem::dragLeaveEvent(event);
+}
+
+void ThreadRenderer::dropEvent(QDropEvent *event)
+{
+    QQuickItem::dropEvent(event);
+}
+#endif
+
 
 #include "ThreadRenderer.moc"

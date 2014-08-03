@@ -20,12 +20,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 {
     // initialize director
     Director* pDirector = Director::getInstance();
-//    cocos2d::GLViewImpl* eglView = cocos2d::GLViewImpl::create("test");
-////    cocos2d::GLViewImpl *eglView = cocos2d::GLViewImpl::createWithRect("HelloCocos2d",cocos2d::Rect(0,0,960,640));
-
-//    //    eglView->setFrameSize(960, 640);
-//    eglView->setDesignResolutionSize(960,640,ResolutionPolicy::NO_BORDER);
-//    pDirector->setOpenGLView(eglView);
 
     // turn on display FPS
     pDirector->setDisplayStats(true);

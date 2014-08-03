@@ -224,7 +224,7 @@ GLViewImpl* GLViewImpl::createWithRect(const std::string &viewName, const Rect& 
         delete glView;
         glView = nullptr;
     }
-    glView->setWindowRect(rect);
+    glView->setViewportRect(rect);
     glView->initializeDesignResolutionSize(rect.size.width, rect.size.height, resolutionPolicy);
     pDirector->setOpenGLView(glView);
     return glView;
@@ -282,10 +282,15 @@ void GLViewImpl::updateDesignResolutionSize()
     GLView::updateDesignResolutionSize();
 }
 
-void GLViewImpl::setWindowRect(const Rect& rect)
+void GLViewImpl::setViewportRect(const Rect& rect)
 {
-    mViewportOrigin = rect.origin;
+    setViewportOrigin(rect.origin);
     setFrameSize(rect.size.width, rect.size.height);
+}
+
+void GLViewImpl::setViewportOrigin(const Vec2& point)
+{
+    mViewportOrigin = point;
 }
 
 NS_CC_END

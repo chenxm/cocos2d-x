@@ -21,7 +21,7 @@ private slots:
     void onWindowSpaceChanged();
 
 private:
-    void initializeWindow(const QRectF& rect);
+    void resetWindowRect();
 private:
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void keyReleaseEvent(QKeyEvent *event);

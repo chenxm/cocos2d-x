@@ -20,7 +20,7 @@ class CC_DLL CCFileUtilsQt : public FileUtils
 
 public:
     /* override funtions */
-    bool init();
+    virtual bool init();
     virtual std::string getWritablePath() const;
     virtual bool isFileExistInternal(const std::string& strFilePath) const;
     virtual bool isAbsolutePath(const std::string& strPath) const;
