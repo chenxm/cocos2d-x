@@ -11,6 +11,7 @@
 #include <qsgsimpletexturenode.h>
 #include "cocos2d.h"
 #include "CCApplication.h"
+#include "CCGLViewImpl.h"
 
 class RenderThreadPool : public QObject
 {
@@ -66,6 +67,12 @@ RenderThreadPool::RenderThreadPool() : initialized(false)
 
 RenderThreadPool RenderThreadPool::instance;
 
+void initializeWindow(const QSizeF& size)
+{
+    cocos2d::Rect windowRect(0, 0, size.width(), size.height());
+    cocos2d::GLViewImpl::createWithRect("test", windowRect, ResolutionPolicy::EXACT_FIT);
+}
+
 
 
 /*
@@ -101,6 +108,9 @@ public slots:
             format.setAttachment(QOpenGLFramebufferObject::CombinedDepthStencil);
             m_renderFbo = new QOpenGLFramebufferObject(m_size, format);
             m_displayFbo = new QOpenGLFramebufferObject(m_size, format);
+
+            initializeWindow(m_size);
+
             cocos2d::Application::getInstance()->applicationDidFinishLaunching();
         }
 
@@ -223,6 +233,8 @@ private:
 ThreadRenderer::ThreadRenderer()
     : m_renderThread(0)
 {
+    connect(this, SIGNAL(widthChanged()), this, SLOT(onSizeChanged()));
+    connect(this, SIGNAL(heightChanged()), this, SLOT(onSizeChanged()));
     setFlag(ItemHasContents, true);
 
     m_renderThread = new RenderThread(QSize(1024, 768));
@@ -294,6 +306,11 @@ QSGNode *ThreadRenderer::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *
     node->setRect(boundingRect());
 
     return node;
+}
+
+void ThreadRenderer::onSizeChanged()
+{
+    CCLOG("onSizeChanged");
 }
 
 #include "ThreadRenderer.moc"

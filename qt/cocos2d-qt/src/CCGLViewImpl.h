@@ -46,25 +46,24 @@ private:
 #endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) */
 
 public:
+    // static function
+    /**
+    @brief    get the shared main open gl window
+    */
+    static GLViewImpl* createWithRect(const std::string& viewName, const Rect& rect, ResolutionPolicy resolutionPolicy);
+
+public:
     void setWindowRect(const Rect& rect);
-//    void resize(int width, int height);
+    void initializeDesignResolutionSize(float width, float height, ResolutionPolicy resolutionPolicy);
+    void updateDesignResolutionSize();
+    void resetViewPort();
+
     /*
      * Set zoom factor for frame. This method is for debugging big resolution (e.g.new ipad) app on desktop.
      */
     void setFrameZoomFactor(float fZoomFactor);
     float getFrameZoomFactor();
-    void centerWindow();
-//    void moveWindow(int left, int top);
-
     
-    // static function
-    /**
-    @brief    get the shared main open gl window
-    */
-    static GLViewImpl* create(const std::string& viewName);
-    static GLViewImpl* createWithRect(const std::string& viewName, Rect rect, float frameZoomFactor = 1.0);
-    static GLViewImpl* createWithFullScreen(const std::string& viewName);
-
     // Qt
     void mouseMove(QMouseEvent *event);
     void mousePress(QMouseEvent *event);

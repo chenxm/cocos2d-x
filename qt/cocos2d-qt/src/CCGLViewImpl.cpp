@@ -274,15 +274,11 @@ float GLViewImpl::getFrameZoomFactor()
 
 void GLViewImpl::setFrameSize(float width, float height)
 {
-//    CCTRACE();
-    GLView::setFrameSize(width, height);
-
-//    resize(width, height); // adjust window size for menubar
-//    centerWindow();
+    _screenSize = Size(width, height);
 }
 
-void GLViewImpl::centerWindow()
-{
+//void GLViewImpl::centerWindow()
+//{
 //    CCTRACE();
 //    if (m_glParentWidget && !m_glParentWidget->parent()) {
 //        QDesktopWidget *w = qApp->desktop();
@@ -290,7 +286,7 @@ void GLViewImpl::centerWindow()
 //        m_glParentWidget->move((rect.width()-m_glParentWidget->width())/2.0f
 //                              ,(rect.height()-m_glParentWidget->height())/2.0f);
 //    }
-}
+//}
 
 //void GLViewImpl::moveWindow(int left, int top)
 //{
@@ -301,12 +297,15 @@ void GLViewImpl::centerWindow()
 
 void GLViewImpl::setViewPortInPoints(float x , float y , float w , float h)
 {
-//    CCTRACE();
-//    GLView::setViewPortInPoints(x, y, w, h);
-    glViewport((GLint)(x * _scaleX + _viewPortRect.origin.x),
-               (GLint)(y * _scaleY + _viewPortRect.origin.y),
+    glViewport((GLint)(m_WindowOrigin.x + x * _scaleX + _viewPortRect.origin.x),
+               (GLint)(m_WindowOrigin.y + y * _scaleY + _viewPortRect.origin.y),
                (GLsizei)(w * _scaleX),
                (GLsizei)(h * _scaleY));
+}
+
+void GLViewImpl::resetViewPort()
+{
+    setViewPortInPoints(0, 0, _designResolutionSize.width, _designResolutionSize.height);
 }
 
 void GLViewImpl::setScissorInPoints(float x , float y , float w , float h)
@@ -315,44 +314,72 @@ void GLViewImpl::setScissorInPoints(float x , float y , float w , float h)
     GLView::setScissorInPoints(x, y, w, h);
 }
 
-GLViewImpl* GLViewImpl::create(const std::string &viewName)
+
+GLViewImpl* GLViewImpl::createWithRect(const std::string &viewName, const Rect& rect, ResolutionPolicy resolutionPolicy)
 {
+    // initialize director
+    cocos2d::Director* pDirector = cocos2d::Director::getInstance();
     GLViewImpl* glView = new GLViewImpl;
     if(!glView->initGL()) {
         delete glView;
         glView = nullptr;
     }
+    glView->setWindowRect(rect);
+    glView->initializeDesignResolutionSize(rect.size.width, rect.size.height, resolutionPolicy);
+    pDirector->setOpenGLView(glView);
     return glView;
 }
 
-//GLViewImpl* GLViewImpl::create(QWidget *param)
-//{
-//    return GLViewImpl::createWithWidget(param);
-//}
-
-//GLViewImpl* GLViewImpl::createWithWidget(QWidget *param)
-//{
-//    do {
-//        CC_BREAK_IF(param == NULL);
-//        CC_BREAK_IF(s_pMainWindow);         /// if have already created GLViewImpl before, just returns.
-
-//        s_pMainWindow = new GLViewImpl;
-////        if(!s_pMainWindow->_createInWidget(param)) {
-////            CC_SAFE_DELETE(s_pMainWindow);
-////        }
-
-//    } while (false);
-//    return s_pMainWindow;
-//}
-
-GLViewImpl* GLViewImpl::createWithRect(const std::string &viewName, Rect rect, float frameZoomFactor)
+void GLViewImpl::initializeDesignResolutionSize(float width, float height, ResolutionPolicy resolutionPolicy)
 {
-    return NULL;
+    CCASSERT(resolutionPolicy != ResolutionPolicy::UNKNOWN, "should set resolutionPolicy");
+
+    if (width == 0.0f || height == 0.0f)
+    {
+        return;
+    }
+
+    _designResolutionSize.setSize(width, height);
+    _resolutionPolicy = resolutionPolicy;
+
+    if (_screenSize.width > 0 && _screenSize.height > 0
+        && _designResolutionSize.width > 0 && _designResolutionSize.height > 0)
+    {
+        _scaleX = (float)_screenSize.width / _designResolutionSize.width;
+        _scaleY = (float)_screenSize.height / _designResolutionSize.height;
+
+        if (_resolutionPolicy == ResolutionPolicy::NO_BORDER)
+        {
+            _scaleX = _scaleY = MAX(_scaleX, _scaleY);
+        }
+
+        else if (_resolutionPolicy == ResolutionPolicy::SHOW_ALL)
+        {
+            _scaleX = _scaleY = MIN(_scaleX, _scaleY);
+        }
+
+        else if ( _resolutionPolicy == ResolutionPolicy::FIXED_HEIGHT) {
+            _scaleX = _scaleY;
+            _designResolutionSize.width = ceilf(_screenSize.width/_scaleX);
+        }
+
+        else if ( _resolutionPolicy == ResolutionPolicy::FIXED_WIDTH) {
+            _scaleY = _scaleX;
+            _designResolutionSize.height = ceilf(_screenSize.height/_scaleY);
+        }
+
+        // calculate the rect of viewport
+        float viewPortW = _designResolutionSize.width * _scaleX;
+        float viewPortH = _designResolutionSize.height * _scaleY;
+
+        _viewPortRect.setRect((_screenSize.width - viewPortW) / 2, (_screenSize.height - viewPortH) / 2, viewPortW, viewPortH);
+
+    }
 }
 
-GLViewImpl* GLViewImpl::createWithFullScreen(const std::string &viewName)
+void GLViewImpl::updateDesignResolutionSize()
 {
-    return NULL;
+    GLView::updateDesignResolutionSize();
 }
 
 void GLViewImpl::mouseMove(QMouseEvent *event)

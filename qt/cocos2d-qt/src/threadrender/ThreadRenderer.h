@@ -14,6 +14,7 @@ public:
 
 public slots:
     void ready();
+    void onSizeChanged();
 
 protected:
     QSGNode *updatePaintNode(QSGNode *, UpdatePaintNodeData *);

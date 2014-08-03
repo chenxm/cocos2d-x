@@ -18,6 +18,10 @@ public slots:
 
 private slots:
     void handleWindowChanged(QQuickWindow *win);
+    void onWindowSpaceChanged();
+
+private:
+    void initializeWindow(const QRectF& rect);
 
 private:
     RealObjectRenderer *m_renderer;
