@@ -1,11 +1,11 @@
-#ifndef __CC_GLVIEW_IMPL_H__
-#define __CC_GLVIEW_IMPL_H__
+#ifndef __GLVIEW_IMPL_H__
+#define __GLVIEW_IMPL_H__
 #include <vector>
 #include "GL/glew.h"
 #include "cocos2d.h"
-#include "CCStdC.h"
-#include "platform/CCCommon.h"
-#include "platform/CCGLView.h"
+//#include "CCStdC.h"
+//#include "platform/CCCommon.h"
+//#include "platform/CCGLView.h"
 
 
 NS_CC_BEGIN
@@ -68,4 +68,4 @@ private:
 
 NS_CC_END
 
-#endif    // __CC_GLVIEW_IMPL_H__
+#endif    // __GLVIEW_IMPL_H__

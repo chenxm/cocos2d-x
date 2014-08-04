@@ -5,8 +5,8 @@
 #include <QtQuick/QQuickWindow>
 #include <qsgsimpletexturenode.h>
 #include "cocos2d.h"
-#include "CCApplication.h"
-#include "CCGLViewImpl.h"
+#include "Application.h"
+#include "GLViewImpl.h"
 #include "QtCoordinate.h"
 
 

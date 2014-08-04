@@ -1,4 +1,5 @@
-#include "CCApplication.h"
+#include "Application.h"
+#include <QCoreApplication>
 
 
 NS_CC_BEGIN
@@ -16,6 +17,11 @@ Application::~Application()
 {
     CC_ASSERT(this == sm_pSharedApplication);
     sm_pSharedApplication = NULL;
+}
+
+void Application::exit(int retcode)
+{
+    qApp->exit(retcode);
 }
 
 //////////////////////////////////////////////////////////////////////////

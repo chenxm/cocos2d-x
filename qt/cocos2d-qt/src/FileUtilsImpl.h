@@ -1,5 +1,5 @@
-#ifndef __CC_FILEUTILSQT_H__
-#define __CC_FILEUTILSQT_H__
+#ifndef __FILEUTILS_H__
+#define __FILEUTILS_H__
 #include <string>
 #include <vector>
 #include "cocos2d.h"
@@ -13,10 +13,10 @@ NS_CC_BEGIN
  */
 
 //! @brief  Helper class to handle file operations
-class CC_DLL CCFileUtilsQt : public FileUtils
+class CC_DLL FileUtilsImpl : public FileUtils
 {
     friend class FileUtils;
-    CCFileUtilsQt();
+    FileUtilsImpl();
 
 public:
     /* override funtions */
@@ -31,5 +31,5 @@ public:
 
 NS_CC_END
 
-#endif    // __CC_FILEUTILSQT_H__
+#endif    // __FILEUTILS_H__
 

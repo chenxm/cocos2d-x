@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "Application.h"
 //#include <cocos-ext.h>
 //#include <SimpleAudioEngine.h>
 
@@ -54,7 +55,7 @@ bool HelloWorld::init()
     MenuItemImage* pCloseItem = MenuItemImage::create("CloseNormal.png", "CloseSelected.png", [&](Ref* sender)->void {
         Director::getInstance()->end();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
-        exit(0);
+            cocos2d::Application::getInstance()->exit();
 #endif
     });
     pCloseItem->setPosition( Point(20, 20) );

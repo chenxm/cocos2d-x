@@ -11,6 +11,7 @@ class CC_DLL Application : public ApplicationProtocol
 public:
     Application();
     virtual ~Application();
+    void exit(int retcode=0);
 
     /**
     @brief    Get current applicaiton instance.

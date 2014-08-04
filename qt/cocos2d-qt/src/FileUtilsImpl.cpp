@@ -1,4 +1,4 @@
-#include "CCFileUtilsQt.h"
+#include "FileUtilsImpl.h"
 #include "platform/CCCommon.h"
 
 // Qt
@@ -14,17 +14,17 @@ NS_CC_BEGIN
 FileUtils* FileUtils::getInstance()
 {
     if (s_sharedFileUtils == NULL) {
-        s_sharedFileUtils = new CCFileUtilsQt();
+        s_sharedFileUtils = new FileUtilsImpl();
         s_sharedFileUtils->init();
     }
     return s_sharedFileUtils;
 }
 
-CCFileUtilsQt::CCFileUtilsQt()
+FileUtilsImpl::FileUtilsImpl()
 {
 }
 
-bool CCFileUtilsQt::init()
+bool FileUtilsImpl::init()
 {
     QDir _execDir(qApp->applicationDirPath());
     QDir _resourceDir(_execDir);
@@ -41,7 +41,7 @@ bool CCFileUtilsQt::init()
     return FileUtils::init();
 }
 
-bool CCFileUtilsQt::isFileExistInternal(const std::string& strFilePath) const
+bool FileUtilsImpl::isFileExistInternal(const std::string& strFilePath) const
 {
     std::string strPath = strFilePath;
     if (!isAbsolutePath(strPath))
@@ -52,14 +52,14 @@ bool CCFileUtilsQt::isFileExistInternal(const std::string& strFilePath) const
     return fileInfo.exists();
 }
 
-bool CCFileUtilsQt::isAbsolutePath(const std::string& strPath) const
+bool FileUtilsImpl::isAbsolutePath(const std::string& strPath) const
 {
     QFileInfo fileInfo(strPath.c_str());
     return fileInfo.isAbsolute();
 }
 
 std::string
-CCFileUtilsQt::getWritablePath() const
+FileUtilsImpl::getWritablePath() const
 {
     std::string ret(qApp->applicationDirPath().toLocal8Bit().constData());
     return ret;

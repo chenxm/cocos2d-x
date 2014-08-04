@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 
-#include "CCGLViewImpl.h"
+#include "GLViewImpl.h"
 #include "cocos2d.h"
 #include "HelloWorldScene.h"
 

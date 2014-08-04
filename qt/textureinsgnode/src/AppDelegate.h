@@ -1,7 +1,7 @@
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
-#include "CCApplication.h"
+#include "Application.h"
 //#include "mainwindow.h"
 #include "platform/CCCommon.h"
 
