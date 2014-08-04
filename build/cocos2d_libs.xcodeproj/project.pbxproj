@@ -1820,6 +1820,8 @@
 		ED9C6A9518599AD8000A5232 /* CCNodeGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED9C6A9218599AD8000A5232 /* CCNodeGrid.cpp */; };
 		ED9C6A9618599AD8000A5232 /* CCNodeGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = ED9C6A9318599AD8000A5232 /* CCNodeGrid.h */; };
 		ED9C6A9718599AD8000A5232 /* CCNodeGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = ED9C6A9318599AD8000A5232 /* CCNodeGrid.h */; };
+		F4C69A04198F6511004C7446 /* CCEditBoxImplMac.h in Headers */ = {isa = PBXBuildFile; fileRef = B282B47D1980E02B00666787 /* CCEditBoxImplMac.h */; };
+		F4C69A05198F651A004C7446 /* CCEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = B282B47C1980E02B00666787 /* CCEditBoxImplMac.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -5433,6 +5435,7 @@
 				460E468118080832000CDD6D /* cocos-ext.h in Headers */,
 				460E47CC18080913000CDD6D /* CCScrollView.h in Headers */,
 				460E47B01808090B000CDD6D /* CCEditBox.h in Headers */,
+				F4C69A04198F6511004C7446 /* CCEditBoxImplMac.h in Headers */,
 				460E478918080902000CDD6D /* CCControlSaturationBrightnessPicker.h in Headers */,
 				460E47D018080913000CDD6D /* CCTableView.h in Headers */,
 				460E478F18080902000CDD6D /* CCControlSwitch.h in Headers */,
@@ -6173,7 +6176,6 @@
 				1551A33B158F2AB200E66CFE /* Sources */,
 				1551A33C158F2AB200E66CFE /* Frameworks */,
 				1551A33D158F2AB200E66CFE /* Headers */,
-				F448AD0519887BA300D9950D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -6557,19 +6559,6 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F448AD0519887BA300D9950D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "mkdir -p \"${PROJECT_DIR}/../qt/lib/mac\"\ncp \"${TARGET_BUILD_DIR}/${TARGET_NAME}.a\" \"${PROJECT_DIR}/../qt/lib/mac/libcocos2d.a\"";
-		};
 		F4FDD8351987A84F00816EB1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6581,7 +6570,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo ${DERIVED_FILE_DIR} asdfasd";
+			shellScript = "mkdir -p \"${PROJECT_DIR}/../qt/lib/mac\"\nfind \"${TARGET_BUILD_DIR}\" -name \"*.a\" -exec cp {} \"${PROJECT_DIR}/../qt/lib/mac\" \\;";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -6879,6 +6868,7 @@
 				460E477D18080902000CDD6D /* CCControl.cpp in Sources */,
 				460E47CB18080913000CDD6D /* CCScrollView.cpp in Sources */,
 				460E47D118080913000CDD6D /* CCTableViewCell.cpp in Sources */,
+				F4C69A05198F651A004C7446 /* CCEditBoxImplMac.mm in Sources */,
 				460E47CF18080913000CDD6D /* CCTableView.cpp in Sources */,
 				460E478618080902000CDD6D /* CCControlPotentiometer.cpp in Sources */,
 				460E478C18080902000CDD6D /* CCControlStepper.cpp in Sources */,
