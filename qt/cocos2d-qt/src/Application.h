@@ -11,8 +11,28 @@ class CC_DLL Application : public ApplicationProtocol
 public:
     Application();
     virtual ~Application();
+
     void exit(int retcode=0);
 
+    /* override functions */
+    /**
+     @brief Get current language iso 639-1 code
+     @return Current language iso 639-1 code
+     * @js NA
+     * @lua NA
+     */
+    virtual const char * getCurrentLanguageCode();
+    virtual cocos2d::LanguageType getCurrentLanguage();
+
+
+    virtual void setAnimationInterval(double interval);
+
+    /**
+     @brief Get target platform
+     */
+    virtual Platform getTargetPlatform();
+
+public:
     /**
     @brief    Get current applicaiton instance.
     @return Current application instance pointer.

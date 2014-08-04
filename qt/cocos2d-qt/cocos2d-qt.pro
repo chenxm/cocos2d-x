@@ -17,14 +17,11 @@ include(cocos2dx.pri)
 
 
 SOURCES += \
-    src/CCCommon.cpp \
-    src/CCDevice.cpp \
     src/fborender/FboRenderer.cpp \
     src/objectrender/ObjectRenderer.cpp \
     src/threadrender/ThreadRenderer.cpp \
     src/Application.cpp \
-    src/GLViewImpl.cpp \
-    src/FileUtilsImpl.cpp
+    src/GLViewImpl.cpp
 
 HEADERS += src/precompiled.h \
     src/fborender/FboRenderer.h \
@@ -32,9 +29,7 @@ HEADERS += src/precompiled.h \
     src/threadrender/ThreadRenderer.h \
     src/QtCoordinate.h \
     src/Application.h \
-    src/GLViewImpl.h \
-    src/FileUtilsImpl.h
-
+    src/GLViewImpl.h
 
 #unix {
 #    target.path = /usr/lib

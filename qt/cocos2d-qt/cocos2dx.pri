@@ -14,6 +14,7 @@ macx {
     LIBS    += -framework OpenAL
     LIBS    += -framework Ogg
     LIBS    += -framework Vorbis
+    LIBS    += -framework AudioToolbox
 
     # prebuilt libraries
     INCLUDEPATH += $$PWD/../../external/png/include/mac
@@ -40,7 +41,16 @@ macx {
     INCLUDEPATH += /opt/local/include
     LIBS += /opt/local/lib/libGLEW.a
 
-    LIBS += $$PWD/../lib/mac/libcocos2d.a
+    LIBS += "$$PWD/../lib/mac/libcocos2d Mac.a"
+    LIBS += "$$PWD/../lib/mac/libbox2d Mac.a"
+    LIBS += "$$PWD/../lib/mac/libchipmunk Mac.a"
+    LIBS += "$$PWD/../lib/mac/libcocosbuilder Mac.a"
+    LIBS += "$$PWD/../lib/mac/libcocosdenshion Mac.a"
+    LIBS += "$$PWD/../lib/mac/libcocostudio Mac.a"
+    LIBS += "$$PWD/../lib/mac/libextension Mac.a"
+    LIBS += "$$PWD/../lib/mac/libnetwork Mac.a"
+    LIBS += "$$PWD/../lib/mac/libspine Mac.a"
+    LIBS += "$$PWD/../lib/mac/libui Mac.a"
 
     INCLUDEPATH += $$PWD/../../cocos/platform/mac
 }
@@ -50,7 +60,6 @@ macx {
 INCLUDEPATH += \
 $$PWD/src \
 $$PWD/../../cocos
-
 
 SOURCES += \
 
