@@ -5,7 +5,7 @@
 #include <QtGui/QOpenGLContext>
 
 #include "cocos2d.h"
-#include "GLViewQtImpl.h"
+#include "QtGLViewImpl.h"
 #include "QtCoordinate.h"
 
 
@@ -35,7 +35,7 @@ RealObjectRenderer::~RealObjectRenderer()
 
 void RealObjectRenderer::paint()
 {
-    cocos2d::GLViewQtImpl* glView = (cocos2d::GLViewQtImpl*)cocos2d::Director::getInstance()->getOpenGLView();
+    cocos2d::QtGLViewImpl* glView = (cocos2d::QtGLViewImpl*)cocos2d::Director::getInstance()->getOpenGLView();
     if(glView == nullptr)
     {
         return;
@@ -89,7 +89,7 @@ void ObjectRenderer::resetWindowRect()
     QRectF rect = boundingRect();
     rect = mapRectToScene(rect);
     cocos2d::Rect windowRect = FromQtToGL(rect, window()->devicePixelRatio(), window()->height());
-    cocos2d::GLViewQtImpl::createWithRect("test", windowRect, ResolutionPolicy::EXACT_FIT);
+    cocos2d::QtGLViewImpl::createWithRect("test", windowRect, ResolutionPolicy::EXACT_FIT);
 }
 
 void ObjectRenderer::onWindowSpaceChanged()
@@ -100,7 +100,7 @@ void ObjectRenderer::onWindowSpaceChanged()
         QRectF rect = boundingRect();
         rect = mapRectToScene(rect);
         cocos2d::Rect windowRect = FromQtToGL(rect, window()->devicePixelRatio(), window()->height());
-        cocos2d::GLViewQtImpl* glView = (cocos2d::GLViewQtImpl*)cocos2d::Director::getInstance()->getOpenGLView();
+        cocos2d::QtGLViewImpl* glView = (cocos2d::QtGLViewImpl*)cocos2d::Director::getInstance()->getOpenGLView();
         glView->setViewportRect(windowRect);
         glView->updateDesignResolutionSize();
     }
@@ -156,7 +156,7 @@ void ObjectRenderer::mousePressEvent(QMouseEvent *event)
 {
     QPointF position = event->localPos();
     cocos2d::Vec2 pos = FromQtToCocos(position, window()->devicePixelRatio(), height());
-    cocos2d::GLViewQtImpl* glView = (cocos2d::GLViewQtImpl*)cocos2d::Director::getInstance()->getOpenGLView();
+    cocos2d::QtGLViewImpl* glView = (cocos2d::QtGLViewImpl*)cocos2d::Director::getInstance()->getOpenGLView();
     intptr_t id = 0;
     glView->handleTouchesBegin(1, &id, &pos.x, &pos.y);
 }
@@ -165,7 +165,7 @@ void ObjectRenderer::mouseMoveEvent(QMouseEvent *event)
 {
     QPointF position = event->localPos();
     cocos2d::Vec2 pos = FromQtToCocos(position, window()->devicePixelRatio(), height());
-    cocos2d::GLViewQtImpl* glView = (cocos2d::GLViewQtImpl*)cocos2d::Director::getInstance()->getOpenGLView();
+    cocos2d::QtGLViewImpl* glView = (cocos2d::QtGLViewImpl*)cocos2d::Director::getInstance()->getOpenGLView();
     intptr_t id = 0;
     glView->handleTouchesMove(1, &id, &pos.x, &pos.y);
 }
@@ -174,7 +174,7 @@ void ObjectRenderer::mouseReleaseEvent(QMouseEvent *event)
 {
     QPointF position = event->localPos();
     cocos2d::Vec2 pos = FromQtToCocos(position, window()->devicePixelRatio(), height());
-    cocos2d::GLViewQtImpl* glView = (cocos2d::GLViewQtImpl*)cocos2d::Director::getInstance()->getOpenGLView();
+    cocos2d::QtGLViewImpl* glView = (cocos2d::QtGLViewImpl*)cocos2d::Director::getInstance()->getOpenGLView();
     intptr_t id = 0;
     glView->handleTouchesEnd(1, &id, &pos.x, &pos.y);
 }

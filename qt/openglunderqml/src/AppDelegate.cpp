@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 
-#include "GLViewQtImpl.h"
+#include "QtGLViewImpl.h"
 #include "cocos2d.h"
 #include "HelloWorldScene.h"
 

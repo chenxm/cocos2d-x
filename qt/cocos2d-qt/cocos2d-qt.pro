@@ -20,14 +20,14 @@ SOURCES += \
     src/fborender/FboRenderer.cpp \
     src/objectrender/ObjectRenderer.cpp \
     src/threadrender/ThreadRenderer.cpp \
-    src/GLViewQtImpl.cpp
+    src/QtGLViewImpl.cpp
 
 HEADERS += src/precompiled.h \
     src/fborender/FboRenderer.h \
     src/objectrender/ObjectRenderer.h \
     src/threadrender/ThreadRenderer.h \
     src/QtCoordinate.h \
-    src/GLViewQtImpl.h
+    src/QtGLViewImpl.h
 
 #unix {
 #    target.path = /usr/lib
