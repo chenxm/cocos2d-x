@@ -1,5 +1,4 @@
 #include "GLViewImpl.h"
-#include "Application.h"
 
 
 NS_CC_BEGIN

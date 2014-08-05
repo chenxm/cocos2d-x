@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2013 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
@@ -60,6 +60,7 @@ THE SOFTWARE.
 #include "base/CCConfiguration.h"
 #include "base/CCNS.h"
 #include "math/CCMath.h"
+#include "CCApplication.h"
 
 /**
  Position of the FPS
@@ -356,10 +357,9 @@ float Director::getDeltaTime() const
 {
     return _deltaTime;
 }
-GLView* Director::setOpenGLView(GLView *openGLView)
+void Director::setOpenGLView(GLView *openGLView)
 {
     CCASSERT(openGLView, "opengl view should not be null");
-    GLView* oldGLView = nullptr;
 
     if (_openGLView != openGLView)
     {
@@ -368,11 +368,10 @@ GLView* Director::setOpenGLView(GLView *openGLView)
         conf->gatherGPUInfo();
         CCLOG("%s\n",conf->getInfo().c_str());
 
-//        if(_openGLView)
-//            _openGLView->release();
-        oldGLView = _openGLView;
+        if(_openGLView)
+            _openGLView->release();
         _openGLView = openGLView;
-//        _openGLView->retain();
+        _openGLView->retain();
 
         // set size
         _winSizeInPoints = _openGLView->getDesignResolutionSize();
@@ -393,7 +392,6 @@ GLView* Director::setOpenGLView(GLView *openGLView)
             _eventDispatcher->setEnabled(true);
         }
     }
-    return oldGLView;
 }
 
 TextureCache* Director::getTextureCache() const
@@ -1252,7 +1250,7 @@ void DisplayLinkDirector::startAnimation()
 
     _invalid = false;
 
-//    Application::getInstance()->setAnimationInterval(_animationInterval);
+    Application::getInstance()->setAnimationInterval(_animationInterval);
     
     // fix issue #3509, skip one fps to avoid incorrect time calculation.
     setNextDeltaTimeZero(true);

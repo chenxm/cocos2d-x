@@ -20,7 +20,6 @@ SOURCES += \
     src/fborender/FboRenderer.cpp \
     src/objectrender/ObjectRenderer.cpp \
     src/threadrender/ThreadRenderer.cpp \
-    src/Application.cpp \
     src/GLViewImpl.cpp
 
 HEADERS += src/precompiled.h \
@@ -28,7 +27,6 @@ HEADERS += src/precompiled.h \
     src/objectrender/ObjectRenderer.h \
     src/threadrender/ThreadRenderer.h \
     src/QtCoordinate.h \
-    src/Application.h \
     src/GLViewImpl.h
 
 #unix {

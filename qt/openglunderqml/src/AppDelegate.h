@@ -1,8 +1,8 @@
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
-#include "Application.h"
 //#include "mainwindow.h"
+#include "cocos2d.h"
 #include "platform/CCCommon.h"
 
 /**

@@ -173,7 +173,7 @@ public:
     * @lua NA
     */
     inline GLView* getOpenGLView() { return _openGLView; }
-    GLView* setOpenGLView(GLView *openGLView);
+    void setOpenGLView(GLView *openGLView);
 
     TextureCache* getTextureCache() const;
 

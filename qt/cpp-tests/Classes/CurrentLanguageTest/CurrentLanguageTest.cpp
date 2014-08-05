@@ -1,5 +1,4 @@
 #include "CurrentLanguageTest.h"
-#include "Application.h"
 
 CurrentLanguageTest::CurrentLanguageTest()
 {

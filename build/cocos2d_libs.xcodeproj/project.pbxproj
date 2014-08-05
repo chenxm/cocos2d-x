@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = A03F2E8F178141C1006731B9 /* Build configuration list for PBXAggregateTarget "build all libs Mac" */;
 			buildPhases = (
-				F448BB0A198F89BF00FC9BAB /* ShellScript */,
+				F4A09B801990DF0F0096CED3 /* ShellScript */,
 			);
 			dependencies = (
 				B2F0AFEC198794EE002FE562 /* PBXTargetDependency */,
@@ -1224,6 +1224,10 @@
 		50ABC01E1926664800A911A9 /* CCThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBF2B1926664700A911A9 /* CCThread.cpp */; };
 		50ABC01F1926664800A911A9 /* CCThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBF2C1926664700A911A9 /* CCThread.h */; };
 		50ABC0201926664800A911A9 /* CCThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBF2C1926664700A911A9 /* CCThread.h */; };
+		50ABC0211926664800A911A9 /* CCGLViewImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBF2E1926664700A911A9 /* CCGLViewImpl.cpp */; };
+		50ABC0231926664800A911A9 /* CCGLViewImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBF2F1926664700A911A9 /* CCGLViewImpl.h */; };
+		50ABC05D1926664800A911A9 /* CCApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBF4F1926664700A911A9 /* CCApplication.h */; };
+		50ABC05F1926664800A911A9 /* CCApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBF501926664700A911A9 /* CCApplication.mm */; };
 		50ABC0611926664800A911A9 /* CCCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBF511926664700A911A9 /* CCCommon.mm */; };
 		50ABC0631926664800A911A9 /* CCDevice.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50ABBF521926664700A911A9 /* CCDevice.mm */; };
 		50ABC0651926664800A911A9 /* CCGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ABBF531926664700A911A9 /* CCGL.h */; };
@@ -5313,6 +5317,7 @@
 				1A570298180BCCAB0088DEC7 /* CCAnimationCache.h in Headers */,
 				B29594C81926D61F003EEF37 /* CCObjLoader.h in Headers */,
 				50ABBE911925AB6F00A911A9 /* CCPlatformMacros.h in Headers */,
+				50ABC05D1926664800A911A9 /* CCApplication.h in Headers */,
 				50ABC0071926664800A911A9 /* CCApplicationProtocol.h in Headers */,
 				50ABBD4E1925AB0000A911A9 /* MathUtil.h in Headers */,
 				50ABBE431925AB6F00A911A9 /* CCDirector.h in Headers */,
@@ -5368,6 +5373,7 @@
 				50ABBD5A1925AB0000A911A9 /* Vec2.h in Headers */,
 				B24AA987195A675C007B4522 /* CCFastTMXLayer.h in Headers */,
 				50ABBEBD1925AB6F00A911A9 /* ccUtils.h in Headers */,
+				50ABC0231926664800A911A9 /* CCGLViewImpl.h in Headers */,
 				50ABBFFD1926664800A911A9 /* CCFileUtilsApple.h in Headers */,
 				5034CA41191D591100CE6051 /* ccShader_Position_uColor.frag in Headers */,
 				50ABBE7F1925AB6F00A911A9 /* CCEventTouch.h in Headers */,
@@ -6669,7 +6675,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F448BB0A198F89BF00FC9BAB /* ShellScript */ = {
+		F4A09B801990DF0F0096CED3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -6854,6 +6860,7 @@
 				50ABBDBD1925AB4100A911A9 /* CCTextureCache.cpp in Sources */,
 				B29594CE1926D61F003EEF37 /* CCSprite3DMaterial.cpp in Sources */,
 				299754F4193EC95400A54AC3 /* ObjectFactory.cpp in Sources */,
+				50ABC0211926664800A911A9 /* CCGLViewImpl.cpp in Sources */,
 				50ABC00D1926664800A911A9 /* CCFileUtils.cpp in Sources */,
 				50ABBE4D1925AB6F00A911A9 /* CCEventCustom.cpp in Sources */,
 				50ABBE9F1925AB6F00A911A9 /* CCScheduler.cpp in Sources */,
@@ -6861,6 +6868,7 @@
 				50ABBE231925AB6F00A911A9 /* base64.cpp in Sources */,
 				50ABBE5D1925AB6F00A911A9 /* CCEventListener.cpp in Sources */,
 				50ABBD601925AB0000A911A9 /* Vec4.cpp in Sources */,
+				50ABC05F1926664800A911A9 /* CCApplication.mm in Sources */,
 				B29594B41926D5EC003EEF37 /* CCMeshCommand.cpp in Sources */,
 				1A01C68E18F57BE800EFE3A6 /* CCDictionary.cpp in Sources */,
 				50ABBD381925AB0000A911A9 /* CCAffineTransform.cpp in Sources */,
