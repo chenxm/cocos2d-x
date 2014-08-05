@@ -1,4 +1,4 @@
-#include "GLViewImpl.h"
+#include "GLViewQtImpl.h"
 
 
 NS_CC_BEGIN
@@ -76,17 +76,17 @@ static bool glew_dynamic_binding()
 //////////////////////////////////////////////////////////////////////////
 // impliment GLViewImpl
 //////////////////////////////////////////////////////////////////////////
-GLViewImpl::GLViewImpl()
+GLViewQtImpl::GLViewQtImpl()
     : mIsInitialed(false)
     , mFrameZoomFactor(1.0f)
 {
 }
 
-GLViewImpl::~GLViewImpl()
+GLViewQtImpl::~GLViewQtImpl()
 {
 }
 
-bool GLViewImpl::initGL()
+bool GLViewQtImpl::initGL()
 {
     if(mIsInitialed)
     {
@@ -147,21 +147,21 @@ bool GLViewImpl::initGL()
     return true;
 }
 
-void GLViewImpl::destroyGL()
+void GLViewQtImpl::destroyGL()
 {
 }
 
-bool GLViewImpl::isOpenGLReady()
+bool GLViewQtImpl::isOpenGLReady()
 {
     return mIsInitialed;
 }
 
-void GLViewImpl::end()
+void GLViewQtImpl::end()
 {
     delete this;
 }
 
-void GLViewImpl::swapBuffers()
+void GLViewQtImpl::swapBuffers()
 {
     if (mIsInitialed)
     {
@@ -170,32 +170,32 @@ void GLViewImpl::swapBuffers()
 }
 
 
-void GLViewImpl::setIMEKeyboardState(bool /*bOpen*/)
+void GLViewQtImpl::setIMEKeyboardState(bool /*bOpen*/)
 {
 
 }
 
-void GLViewImpl::setViewName(const std::string &pszViewName)
+void GLViewQtImpl::setViewName(const std::string &pszViewName)
 {
     GLView::setViewName(pszViewName);
 }
 
-void GLViewImpl::setFrameZoomFactor(float fZoomFactor)
+void GLViewQtImpl::setFrameZoomFactor(float fZoomFactor)
 {
     mFrameZoomFactor = fZoomFactor;
 }
 
-float GLViewImpl::getFrameZoomFactor()
+float GLViewQtImpl::getFrameZoomFactor()
 {
     return mFrameZoomFactor;
 }
 
-void GLViewImpl::setFrameSize(float width, float height)
+void GLViewQtImpl::setFrameSize(float width, float height)
 {
     _screenSize = Size(width, height);
 }
 
-void GLViewImpl::setViewPortInPoints(float x , float y , float w , float h)
+void GLViewQtImpl::setViewPortInPoints(float x , float y , float w , float h)
 {
     glViewport((GLint)(mViewportOrigin.x + x * _scaleX + _viewPortRect.origin.x),
                (GLint)(mViewportOrigin.y + y * _scaleY + _viewPortRect.origin.y),
@@ -203,22 +203,22 @@ void GLViewImpl::setViewPortInPoints(float x , float y , float w , float h)
                (GLsizei)(h * _scaleY));
 }
 
-void GLViewImpl::resetViewPort()
+void GLViewQtImpl::resetViewPort()
 {
     setViewPortInPoints(0, 0, _designResolutionSize.width, _designResolutionSize.height);
 }
 
-void GLViewImpl::setScissorInPoints(float x , float y , float w , float h)
+void GLViewQtImpl::setScissorInPoints(float x , float y , float w , float h)
 {
     GLView::setScissorInPoints(x, y, w, h);
 }
 
 
-GLViewImpl* GLViewImpl::createWithRect(const std::string &viewName, const Rect& rect, ResolutionPolicy resolutionPolicy)
+GLViewQtImpl* GLViewQtImpl::createWithRect(const std::string &viewName, const Rect& rect, ResolutionPolicy resolutionPolicy)
 {
     // initialize director
     cocos2d::Director* pDirector = cocos2d::Director::getInstance();
-    GLViewImpl* glView = new GLViewImpl;
+    GLViewQtImpl* glView = new GLViewQtImpl;
     if(!glView->initGL()) {
         delete glView;
         glView = nullptr;
@@ -229,7 +229,7 @@ GLViewImpl* GLViewImpl::createWithRect(const std::string &viewName, const Rect& 
     return glView;
 }
 
-void GLViewImpl::initializeDesignResolutionSize(float width, float height, ResolutionPolicy resolutionPolicy)
+void GLViewQtImpl::initializeDesignResolutionSize(float width, float height, ResolutionPolicy resolutionPolicy)
 {
     CCASSERT(resolutionPolicy != ResolutionPolicy::UNKNOWN, "should set resolutionPolicy");
 
@@ -276,18 +276,18 @@ void GLViewImpl::initializeDesignResolutionSize(float width, float height, Resol
     }
 }
 
-void GLViewImpl::updateDesignResolutionSize()
+void GLViewQtImpl::updateDesignResolutionSize()
 {
     GLView::updateDesignResolutionSize();
 }
 
-void GLViewImpl::setViewportRect(const Rect& rect)
+void GLViewQtImpl::setViewportRect(const Rect& rect)
 {
     setViewportOrigin(rect.origin);
     setFrameSize(rect.size.width, rect.size.height);
 }
 
-void GLViewImpl::setViewportOrigin(const Vec2& point)
+void GLViewQtImpl::setViewportOrigin(const Vec2& point)
 {
     mViewportOrigin = point;
 }

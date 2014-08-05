@@ -1,20 +1,16 @@
-#ifndef __GLVIEW_IMPL_H__
-#define __GLVIEW_IMPL_H__
+#ifndef __GLVIEW_QT_IMPL_H__
+#define __GLVIEW_QT_IMPL_H__
 #include <vector>
-#include "GL/glew.h"
 #include "cocos2d.h"
-//#include "CCStdC.h"
-//#include "platform/CCCommon.h"
-//#include "platform/CCGLView.h"
 
 
 NS_CC_BEGIN
 
-class CC_DLL GLViewImpl : public GLView, public Ref
+class CC_DLL GLViewQtImpl : public GLView, public Ref
 {
 public:
-    explicit GLViewImpl();
-    virtual ~GLViewImpl();
+    explicit GLViewQtImpl();
+    virtual ~GLViewQtImpl();
 
 private:
     /* override functions */
@@ -40,7 +36,7 @@ public:
     /**
     @brief    get the shared main open gl window
     */
-    static GLViewImpl* createWithRect(const std::string& viewName, const Rect& rect, ResolutionPolicy resolutionPolicy);
+    static GLViewQtImpl* createWithRect(const std::string& viewName, const Rect& rect, ResolutionPolicy resolutionPolicy);
 
 public:
     void setViewportRect(const Rect& rect);
@@ -68,4 +64,4 @@ private:
 
 NS_CC_END
 
-#endif    // __GLVIEW_IMPL_H__
+#endif    // __GLVIEW_QT_IMPL_H__
