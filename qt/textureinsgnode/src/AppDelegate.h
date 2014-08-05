@@ -2,6 +2,7 @@
 #define  _APP_DELEGATE_H_
 
 //#include "mainwindow.h"
+#include "cocos2d.h"
 #include "platform/CCCommon.h"
 
 /**
