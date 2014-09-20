@@ -12,9 +12,9 @@ Item {
         anchors.margins: 0
 
         // The transform is just to show something interesting..
-        transform: [
-            Rotation { id: rotation; axis.x: 1; axis.z: 0; axis.y: 0;angle: 180; origin.x: renderer.width / 2; origin.y: renderer.height / 2;}
-        ]
+//        transform: [
+//            Rotation { id: rotation; axis.x: 1; axis.z: 0; axis.y: 0;angle: 180; origin.x: renderer.width / 2; origin.y: renderer.height / 2;}
+//        ]
     }
 
     Rectangle {
